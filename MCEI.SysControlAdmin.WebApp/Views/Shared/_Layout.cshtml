@@ -4,20 +4,19 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Misión Cristiana Elim Izalco</title>
-
+    
     <link rel="stylesheet" href="~/MCEI.SysControlAdmin.WebApp.styles.css" asp-append-version="true" />
-
 </head>
 <body>
-
+    
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
+    
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 
