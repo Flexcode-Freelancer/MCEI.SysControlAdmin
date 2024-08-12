@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\MCEI.SysControlAdmin.BL\MCEI.SysControlAdmin.BL.csproj" />
     <ProjectReference Include="..\MCEI.SysControlAdmin.EN\MCEI.SysControlAdmin.EN.csproj" />
   </ItemGroup>
