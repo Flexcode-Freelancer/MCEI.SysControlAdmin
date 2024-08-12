@@ -3,9 +3,53 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "User Interface - UI", "User Interface - UI", "{19714661-0921-4A31-B8B1-8FA200B2DF5E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entities - EN", "Entities - EN", "{CE758E95-F987-4022-9AD9-4817BB60C8A5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data Access Layer - DAL", "Data Access Layer - DAL", "{27F5AE01-412B-4F82-A33D-0C065C08D3DA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business Logic - BL", "Business Logic - BL", "{323962DA-C550-4292-9100-A17BA36ADD2A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCEI.SysControlAdmin.WebApp", "MCEI.SysControlAdmin.WebApp\MCEI.SysControlAdmin.WebApp.csproj", "{2713C237-E4E6-4CBB-A6C9-5953C5949AE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCEI.SysControlAdmin.EN", "MCEI.SysControlAdmin.EN\MCEI.SysControlAdmin.EN.csproj", "{FAB62001-FBA2-424C-9D9A-7290783D1128}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCEI.SysControlAdmin.DAL", "MCEI.SysControlAdmin.DAL\MCEI.SysControlAdmin.DAL.csproj", "{208E27BD-1EA2-48C1-9F69-6CF4D516E143}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCEI.SysControlAdmin.BL", "MCEI.SysControlAdmin.BL\MCEI.SysControlAdmin.BL.csproj", "{11222F18-E168-4C7A-B838-24E81C54E990}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2713C237-E4E6-4CBB-A6C9-5953C5949AE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2713C237-E4E6-4CBB-A6C9-5953C5949AE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2713C237-E4E6-4CBB-A6C9-5953C5949AE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2713C237-E4E6-4CBB-A6C9-5953C5949AE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAB62001-FBA2-424C-9D9A-7290783D1128}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAB62001-FBA2-424C-9D9A-7290783D1128}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAB62001-FBA2-424C-9D9A-7290783D1128}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAB62001-FBA2-424C-9D9A-7290783D1128}.Release|Any CPU.Build.0 = Release|Any CPU
+		{208E27BD-1EA2-48C1-9F69-6CF4D516E143}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{208E27BD-1EA2-48C1-9F69-6CF4D516E143}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{208E27BD-1EA2-48C1-9F69-6CF4D516E143}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{208E27BD-1EA2-48C1-9F69-6CF4D516E143}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11222F18-E168-4C7A-B838-24E81C54E990}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11222F18-E168-4C7A-B838-24E81C54E990}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11222F18-E168-4C7A-B838-24E81C54E990}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11222F18-E168-4C7A-B838-24E81C54E990}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2713C237-E4E6-4CBB-A6C9-5953C5949AE9} = {19714661-0921-4A31-B8B1-8FA200B2DF5E}
+		{FAB62001-FBA2-424C-9D9A-7290783D1128} = {CE758E95-F987-4022-9AD9-4817BB60C8A5}
+		{208E27BD-1EA2-48C1-9F69-6CF4D516E143} = {27F5AE01-412B-4F82-A33D-0C065C08D3DA}
+		{11222F18-E168-4C7A-B838-24E81C54E990} = {323962DA-C550-4292-9100-A17BA36ADD2A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ABF3C567-D63F-4631-B267-AA8F9DA35151}
