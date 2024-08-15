@@ -23,7 +23,7 @@ GO
     INSERT INTO [User] (IdRole, [Name], LastName, Email, [Password], [Status], RegistrationDate) 
     VALUES (1, 'Flexcode', 'Freelancer', 'DesAdmin@elimizalco.com', 'c8aa131427a72781b156ac723ddb917f', 1, SYSDATETIME());
 GO
-CREATE TABLE ProfessionOrStudys(
+CREATE TABLE ProfessionOrStudy(
     Id INT NOT NULL PRIMARY KEY IDENTITY (1,1),
     [Name] VARCHAR (100) NOT NULL,
 );
