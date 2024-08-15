@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 // Referencias Necesarias Para El Correcto Funcionamiento
 using System.ComponentModel.DataAnnotations;
+using MCEI.SysControlAdmin.EN.User___EN;
 
 #endregion
 
