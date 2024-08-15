@@ -81,23 +81,23 @@
         {
             @:showErrorAlert('@ViewBag.Error');
         }
-            // Funcion para la alerta
-            function CreateRecord(e) {
-                e.preventDefault();
-                const form = document.getElementById('Form');
+        // Funcion para la alerta
+        function CreateRecord(e) {
+            e.preventDefault();
+            const form = document.getElementById('Form');
 
-                Swal.fire({
-                    title: '¿Eliminar Este Registro?',
-                    text: '¿Estas Seguro De Eliminar el Siguiente Registro? Recuerda No Puedes Revertir Los Cambios',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: 'Si, Eliminar Registro'
-                            cancelButtonText: 'Cancelar'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        form.submit();
-                    }
-                });
-            }
+            Swal.fire({
+                title: '¿Eliminar Este Registro?',
+                text: '¿Estas Seguro De Eliminar el Siguiente Registro? Recuerda No Puedes Revertir Los Cambios',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Si, Eliminar Registro',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        }
     </script>
 }
