@@ -18,4 +18,8 @@
     <ProjectReference Include="..\MCEI.SysControlAdmin.EN\MCEI.SysControlAdmin.EN.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\plugins\" />
+  </ItemGroup>
+
 </Project>
