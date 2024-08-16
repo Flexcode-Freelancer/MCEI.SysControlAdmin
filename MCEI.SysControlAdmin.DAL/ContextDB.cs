@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MCEI.SysControlAdmin.EN.Membership___EN;
 using MCEI.SysControlAdmin.EN.ProfessionOrStudy___EN;
 using MCEI.SysControlAdmin.EN.Role___EN;
 
@@ -25,6 +26,7 @@ namespace MCEI.SysControlAdmin.DAL
         public DbSet<Role> Role { get; set; }
         public DbSet<User> User { get; set; }
         public DbSet<ProfessionOrStudy> ProfessionOrStudy { get; set; }
+        public DbSet<Membership> Membership { get; set; }
         #endregion
 
         // Metodo de Conexion a la Base de Datos
