@@ -9,7 +9,7 @@ using MCEI.SysControlAdmin.EN.Membership___EN;
 using MCEI.SysControlAdmin.EN.Privilege___EN;
 using MCEI.SysControlAdmin.EN.ProfessionOrStudy___EN;
 using MCEI.SysControlAdmin.EN.Role___EN;
-
+using MCEI.SysControlAdmin.EN.Server___EN;
 using MCEI.SysControlAdmin.EN.User___EN;
 
 // Referencias Necesarias Para El Correcto Funcionamiento
@@ -29,6 +29,7 @@ namespace MCEI.SysControlAdmin.DAL
         public DbSet<ProfessionOrStudy> ProfessionOrStudy { get; set; }
         public DbSet<Membership> Membership { get; set; }
         public DbSet<Privilege> Privilege { get; set; }
+        public DbSet<Server> Server { get; set; }
         #endregion
 
         // Metodo de Conexion a la Base de Datos
