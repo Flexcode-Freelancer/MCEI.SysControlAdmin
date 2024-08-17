@@ -177,7 +177,7 @@ namespace MCEI.SysControlAdmin.DAL.Server___DAL
 
         #region METODO PARA VALIDAR UNICA EXISTENCIA DEL REGISTRO
         // Metodo Para Validar La Unica Existencia De Un Registro y No Haber Duplicidad
-        private static async Task<bool> ExistCourse(Server server, ContextDB contextDB)
+        private static async Task<bool> ExistServer(Server server, ContextDB contextDB)
         {
             bool result = false;
             var servers = await contextDB.Server.FirstOrDefaultAsync(c => c.IdMembership == server.IdMembership && c.Id != server.Id);
