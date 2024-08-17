@@ -1,0 +1,275 @@
+﻿@model MCEI.SysControlAdmin.EN.Membership___EN.Membership
+
+@{
+    ViewData["Title"] = "Detalles de Membresia";
+}
+
+<h1>Detalles de Membresia</h1><span id="minor"></span>
+<hr />
+<div>
+    <h2>Información Personal</h2>
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Dui)
+        </dt>
+        <dd class="col-sm-10" id="dui-field">
+            @Html.DisplayFor(model => model.Dui)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DateOfBirth)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Age)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Age) Años
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CivilStatus)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CivilStatus)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdProfessionOrStudy)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ProfessionOrStudy!.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PlaceOfWorkOrStudy)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PlaceOfWorkOrStudy)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.WorkOrStudyPhone)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.WorkOrStudyPhone)
+        </dd>
+        <div>
+            <br />
+            <h2>Información Adicional</h2>
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.ConversionDate)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.ConversionDate)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.PlaceOfConversion)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.PlaceOfConversion)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.WaterBaptism)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.WaterBaptism)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.BaptismOfTheHolySpirit)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.BaptismOfTheHolySpirit)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.PastorsName)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.PastorsName)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.SupervisorsName)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.SupervisorsName)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.LeadersName)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.LeadersName)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.TimeToGather)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.TimeToGather)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Zone)
+                </dt>
+                <dd class="col-sm-10">
+                    # @Html.DisplayFor(model => model.Zone)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.District)
+                </dt>
+                <dd class="col-sm-10">
+                    # @Html.DisplayFor(model => model.District)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Sector)
+                </dt>
+                <dd class="col-sm-10">
+                    # @Html.DisplayFor(model => model.Sector)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Cell)
+                </dt>
+                <dd class="col-sm-10">
+                    # @Html.DisplayFor(model => model.Cell)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Status)
+                </dt>
+                @if (Model.Status == 1)
+                {
+                    <dd class="col-sm-10">
+                        Activo
+                    </dd>
+                }
+                else if (Model.Status == 2)
+                {
+                    <dd class="col-sm-10">
+                        Inactivo
+                    </dd>
+                }
+                else
+                {
+                    <dd> </dd>
+                }
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.CommentsOrObservations)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.CommentsOrObservations)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.DateCreated)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.DateCreated)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.DateModification)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.DateModification)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.ImageData)
+                </dt>
+                <dd class="col-sm-10">
+                    <img id="imagenPreview" src="@(ViewBag.ImageUrl != null ? "data:image/jpeg;base64," + ViewBag.ImageUrl : "")" alt="Vista previa de la imagen" style="max-width: 100%; max-height: 200px;" />
+                </dd>
+                <dt class="col-sm-2">
+                    Codigo de Barras
+                </dt>
+                <dd class="col-sm-10">
+                    <svg id="barcode"></svg>
+                </dd>
+            </dl>
+        </div>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Modificar Membresia", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary", id = "modifyButton" }) |
+    <a class="btn btn-outline-secondary" asp-action="Index">Regresar a La Lista</a>
+</div>
+
+@section Scripts {
+    <script>
+        // Función para mostrar alertas de error utilizando SweetAlert2
+        function showErrorAlert(message) {
+            Swal.fire({
+                title: 'Error',
+                text: message,
+                icon: 'error'
+            });
+        }
+
+        // Evento que se ejecuta una vez que el DOM ha sido completamente cargado
+        document.addEventListener("DOMContentLoaded", function () {
+
+            // Generar el código de barras basado en el valor de Dui
+            var duiElement = document.getElementById("dui-field"); // Selecciona el elemento <dd> con el id "dui-field"
+            var duiValue = duiElement.innerText; // Obtén el valor de Dui del elemento
+            var barcodeSvg = document.getElementById("barcode"); // Selecciona el elemento <svg> con el id "barcode"
+            JsBarcode(barcodeSvg, duiValue); // Genera el código de barras basado en el valor de Dui
+
+            // Mostrar alerta de ViewBag.Error si es necesario
+            @if (!string.IsNullOrEmpty(ViewBag.Error))
+            {
+                @:showErrorAlert('@ViewBag.Error');
+            }
+
+            // Agregar el evento de clic al botón de modificar
+            document.getElementById('modifyButton').addEventListener('click', function (event) {
+                event.preventDefault(); // Prevenir la acción predeterminada del enlace
+                Swal.fire({
+                    title: '¿Ir a La Vista Modificar?',
+                    text: "¿Estás seguro de que quieres ir a la vista Modificar?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Sí, Ir a La Vista Modificar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '@Url.Action("Edit", "Membership", new { id = Model.Id })';
+                    }
+                });
+            });
+
+            // Verificar si el usuario es menor de edad y mostrar mensaje
+            const age = @Html.DisplayFor(model => model.Age);
+            const name = '@Html.DisplayFor(model => model.Name)';
+            const lastName = '@Html.DisplayFor(model => model.LastName)';
+            const minorSpan = document.getElementById('minor'); // Obtenemos el elemento span con ID "minor".
+
+            if (age <= 17) {
+                const message = `${name} ${lastName} Actualmente Es Menor De Edad`; // Concatenamos el nombre, apellido y el mensaje requerido.
+                minorSpan.textContent = message; // Establecemos el texto del span con el mensaje.
+            } else {
+                minorSpan.textContent = ''; // Si la edad es mayor o igual a 18, vaciamos el texto del span.
+            }
+        });
+    </script>
+}
