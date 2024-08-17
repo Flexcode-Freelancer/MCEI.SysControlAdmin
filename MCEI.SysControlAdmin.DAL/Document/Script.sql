@@ -61,3 +61,8 @@ CREATE TABLE Membership(
     ImageData VARBINARY(MAX) NOT NULL,
 );
 GO
+CREATE TABLE Privilege(
+    Id INT NOT NULL PRIMARY KEY IDENTITY (1,1),
+    [Name] VARCHAR (100) NOT NULL,
+);
+GO
