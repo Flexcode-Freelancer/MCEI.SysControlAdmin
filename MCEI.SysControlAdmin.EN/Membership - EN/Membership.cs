@@ -1,15 +1,14 @@
 ﻿#region REFERENCIAS
-using MCEI.SysControlAdmin.EN.ProfessionOrStudy___EN;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 // Referencias Necesarias Para El Correcto Funcionamiento
-
-
+using MCEI.SysControlAdmin.EN.ProfessionOrStudy___EN;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+using MCEI.SysControlAdmin.EN.Server___EN;
 
 #endregion
 
@@ -174,7 +173,7 @@ namespace MCEI.SysControlAdmin.EN.Membership___EN
 
         public ProfessionOrStudy? ProfessionOrStudy { get; set; } //propiedad de navegación
 
-        //public List<Server> Servers { get; set; } = new List<Server>(); // Propiedad de navegacion
+        public List<Server> Servers { get; set; } = new List<Server>(); // Propiedad de navegacion
 
         //public List<HistoryServer> HistoryServers { get; set; } = new List<HistoryServer>(); // Propiedad de navegacion
     }

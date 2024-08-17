@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 // Referencias Necesarias Para El Correcto Funcionamiento
 using System.ComponentModel.DataAnnotations;
+using MCEI.SysControlAdmin.EN.Server___EN;
 
 #endregion
 
@@ -24,7 +25,7 @@ namespace MCEI.SysControlAdmin.EN.Privilege___EN
         public string Name { get; set; } = string.Empty;
         #endregion
 
-        //public List<Server> Servers { get; set; } = new List<Server>(); // Propiedad de navegacion
+        public List<Server> Servers { get; set; } = new List<Server>(); // Propiedad de navegacion
 
         //public List<HistoryServer> HistoryServers { get; set; } = new List<HistoryServer>(); // Propiedad de navegacion
     }
