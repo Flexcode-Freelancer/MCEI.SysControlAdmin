@@ -162,7 +162,7 @@ namespace MCEI.SysControlAdmin.DAL.Server___DAL
 
         #region METODO PARA INCLUIR MEMBRESIA Y PRIVILEGIOS
         // Método que incluye el membresia y el privilegio para la búsqueda
-        public static async Task<List<Server>> SearchIncludeScheduleAndTrainerAsync(Server server)
+        public static async Task<List<Server>> SearchIncludeAsync(Server server)
         {
             var servers = new List<Server>();
             using (var dbContext = new ContextDB())
