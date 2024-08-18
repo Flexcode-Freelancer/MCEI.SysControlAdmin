@@ -168,7 +168,7 @@ namespace MCEI.SysControlAdmin.DAL.Server___DAL
             using (var dbContext = new ContextDB())
             {
                 var select = dbContext.Server.AsQueryable();
-                select = QuerySelect(select, server).Include(c => c.Memberhsip).Include(c => c.Privilege).AsQueryable();
+                select = QuerySelect(select, server).Include(c => c.Membership).Include(c => c.Privilege).AsQueryable();
                 servers = await select.ToListAsync();
             }
             return servers;
