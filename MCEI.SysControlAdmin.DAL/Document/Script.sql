@@ -72,6 +72,6 @@ CREATE TABLE [Server](
 	IdPrivilege INT NOT NULL FOREIGN KEY REFERENCES Privilege(Id),
 	[Status] TINYINT NOT NULL,
 	DateCreated DATETIME NOT NULL,
-    DateModification DATETIME NOT NULL,
+    DateModification DATETIME NOT NULL
 );
 GO
