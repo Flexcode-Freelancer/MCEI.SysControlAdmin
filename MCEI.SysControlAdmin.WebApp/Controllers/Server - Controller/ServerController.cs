@@ -36,8 +36,8 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Server___Controller
             var membership = await membershipBL.GetAllAsync();
             var privilege = await privilegeBL.GetAllAsync();
 
-            ViewBag.Membership = membership;
-            ViewBag.Privilege = privilege;
+            ViewBag.Memberships = membership;
+            ViewBag.Privileges = privilege;
             return View(servers);
         }
         #endregion
@@ -142,11 +142,11 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Server___Controller
                 }
 
                 // Obtén las entidades relacionadas Membership y Privilege
-                server.Memberhsip = await membershipBL.GetByIdAsync(new Membership { Id = server.IdMembership });
+                server.Membership = await membershipBL.GetByIdAsync(new Membership { Id = server.IdMembership });
                 server.Privilege = await privilegeBL.GetByIdAsync(new Privilege { Id = server.IdPrivilege });
 
                 // Comprueba si las entidades relacionadas existen
-                if (server.Memberhsip == null || server.Privilege == null)
+                if (server.Membership == null || server.Privilege == null)
                 {
                     return NotFound();
                 }
@@ -173,11 +173,11 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Server___Controller
                     return NotFound();
                 }
                 // Obtén las entidades relacionadas Membership y Privilege
-                server.Memberhsip = await membershipBL.GetByIdAsync(new Membership { Id = server.IdMembership });
+                server.Membership = await membershipBL.GetByIdAsync(new Membership { Id = server.IdMembership });
                 server.Privilege = await privilegeBL.GetByIdAsync(new Privilege { Id = server.IdPrivilege });
 
                 // Comprueba si las entidades relacionadas existen
-                if (server.Memberhsip == null || server.Privilege == null)
+                if (server.Membership == null || server.Privilege == null)
                 {
                     return NotFound();
                 }
@@ -210,7 +210,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Server___Controller
                 if (serverDB == null)
                     serverDB = new Server();
                 if (serverDB.Id > 0)
-                    serverDB.Memberhsip = await membershipBL.GetByIdAsync(new Membership { Id = serverDB.IdMembership });
+                    serverDB.Membership = await membershipBL.GetByIdAsync(new Membership { Id = serverDB.IdMembership });
                 serverDB.Privilege = await privilegeBL.GetByIdAsync(new Privilege { Id = serverDB.IdPrivilege });
                 return View(serverDB);
             }
