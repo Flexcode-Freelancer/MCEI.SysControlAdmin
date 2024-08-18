@@ -43,6 +43,6 @@ namespace MCEI.SysControlAdmin.EN.Server___EN
 
         public Privilege? Privilege { get; set; } // Propiedadd de Navegacion
 
-        public Membership? Memberhsip { get; set; }// Propiedad de Navegacion
+        public Membership? Membership { get; set; }// Propiedad de Navegacion
     }
 }
