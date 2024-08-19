@@ -40,15 +40,15 @@
         </div>
         <div class="row">
             <div class="col-md-6">
-                <div class="form-group">
-                    <label for="Status">Estatus</label>
-                    <select class="form-select" name="Status">
-                        <option selected value="0">Seleccionar</option>
-                        <option value="1">Activo</option>
-                        <option value="2">Inactivo</option>
-                    </select>
-                </div>
+            <div class="form-group">
+                <label for="Status">Estatus</label>
+                <select class="form-select" name="Status">
+                    <option selected value="0">Seleccionar</option>
+                    <option value="1">Activo</option>
+                    <option value="2">Inactivo</option>
+                </select>
             </div>
+        </div>
         </div>
         <br />
         <div class="row">
@@ -69,7 +69,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.IdMembership)
+                Nombre
+            </th>
+            <th>
+                Apellido
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.IdPrivilege)
@@ -85,7 +88,10 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Membership!.Name + " " + item.Membership!.LastName)
+                    @Html.DisplayFor(modelItem => item.Membership!.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Membership!.LastName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Privilege!.Name)
