@@ -135,13 +135,31 @@ namespace MCEI.SysControlAdmin.DAL.Membership___DAL
         public static async Task<Membership> GetByIdAsync(Membership memberships)
         {
             var membershipDB = new Membership();
-            // Un bloque de conexion que mientras se permanezca en el bloque la base de datos permanecera abierta y al terminar se destruira
+
+            // Un bloque de conexión que mientras se permanezca en el bloque, la base de datos permanecerá abierta y al terminar se destruirá
             using (var dbContext = new ContextDB())
             {
-                membershipDB = await dbContext.Membership.FirstOrDefaultAsync(m => m.Id == memberships.Id);
+                membershipDB = await dbContext.Membership
+                    .Include(m => m.ProfessionOrStudy) // Incluir la propiedad de navegación de Profesión u Oficio
+                    .FirstOrDefaultAsync(m => m.Id == memberships.Id);
             }
-            return membershipDB!; // Retornamos el Registro Encontrado
+
+            return membershipDB!; // Retornamos el registro encontrado
         }
+
+        // Normalmente el metodo deberia ser asi como el siguiente pero, por modificaciones en
+        // el proceso de servidores se a modificado pero se deja la forma normal para aprenderla.
+        // *********** Metodo Para Mostrar Un Registro En Base A Su Id *************
+        //public static async Task<Membership> GetByIdAsync(Membership memberships)
+        //{
+        //    var membershipDB = new Membership();
+        //    // Un bloque de conexion que mientras se permanezca en el bloque la base de datos permanecera abierta y al terminar se destruira
+        //    using (var dbContext = new ContextDB())
+        //    {
+        //        membershipDB = await dbContext.Membership.FirstOrDefaultAsync(m => m.Id == memberships.Id);
+        //    }
+        //    return membershipDB!; // Retornamos el Registro Encontrado
+        //}
         #endregion
 
         #region METODO PARA BUSCAR REGISTROS MEDIANTE EL USO DE FILTROS

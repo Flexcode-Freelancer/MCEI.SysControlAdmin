@@ -117,8 +117,48 @@
     <script>
         // Inicializamos el Plugin de Autocompletado y Busqueda De Profesion u Oficio
         $(document).ready(function () {
+
+            // Carga de select2 a select´s de Membership y Privilege
             $('#IdMembership').select2();
             $('#IdPrivilege').select2();
+            
+            // Automatizacion de autocompletar informacion de membresia
+            $('#IdMembership').on('change', function () {
+                var memberId = $(this).val();
+
+                if (memberId) {
+                    $.ajax({
+                        url: '@Url.Action("GetMembershipDetails", "Server")',
+                        type: 'GET',
+                        data: { id: memberId },
+                        success: function (data) {
+                            $('#Dui').val(data.dui); // Verifica que 'dui' coincida con la clave en tu JSON
+                            $('#Birthdate').val(data.birthdate); // Asegúrate que 'birthdate' sea la clave correcta
+                            $('#Age').val(data.age); // Verifica que 'age' sea correcto
+                            $('#Gender').val(data.gender); // Verifica que 'gender' sea correcto
+                            $('#Phone').val(data.phone); // Verifica que 'phone' sea correcto
+                            $('#CivilStatus').val(data.civilStatus); // Verifica que 'civilStatus' sea correcto
+                            $('#Profession').val(data.profession); // Asegúrate de que 'profession' coincida
+                            $('#WaterBaptism').val(data.waterBaptism); // Verifica que 'waterBaptism' sea correcto
+                            $('#SpiritBaptism').val(data.spiritBaptism); // Verifica que 'spiritBaptism' sea correcto
+                        },
+                        error: function () {
+                            alert('Error al obtener los detalles del miembro.');
+                        }
+                    });
+                } else {
+                    // Limpiar los campos si no se selecciona ningún miembro
+                    $('#Dui').val('');
+                    $('#Birthdate').val('');
+                    $('#Age').val('');
+                    $('#Gender').val('');
+                    $('#Phone').val('');
+                    $('#CivilStatus').val('');
+                    $('#Profession').val('');
+                    $('#WaterBaptism').val('');
+                    $('#SpiritBaptism').val('');
+                }
+            });
         });
     </script>
 }

@@ -53,6 +53,32 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Server___Controller
             return View();
         }
 
+        // Metod que extrae por Id y devolver a la vista en foramto Json
+        [Authorize(Roles = "Desarrollador")]
+        [HttpGet]
+        public async Task<IActionResult> GetMembershipDetails(int id)
+        {
+            var member = await membershipBL.GetByIdAsync(id);
+            if (member == null)
+            {
+                return NotFound();
+            }
+
+            var memberDetails = new
+            {
+                Dui = member.Dui,
+                Birthdate = member.DateOfBirth, // Para que se muestre correctamente en el input date
+                Age = member.Age,
+                Gender = member.Gender,
+                Phone = member.Phone,
+                CivilStatus = member.CivilStatus,
+                Profession = member.ProfessionOrStudy?.Name, // Verifica si esta es la clave correcta
+                WaterBaptism = member.WaterBaptism,
+                SpiritBaptism = member.BaptismOfTheHolySpirit
+            };
+            return Json(memberDetails);
+        }
+
         // Accion Que Recibe Los Datos Del Formulario Para Ser Enviados a La BD
         [Authorize(Roles = "Desarrollador")]
         [HttpPost]
