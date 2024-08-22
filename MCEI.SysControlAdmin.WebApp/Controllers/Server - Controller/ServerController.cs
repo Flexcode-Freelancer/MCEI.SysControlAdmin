@@ -42,17 +42,6 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Server___Controller
         }
         #endregion
 
-        #region METODO PARA CREAR
-        // Accion Para Mostrar La Vista De Crear
-        [Authorize(Roles = "Desarrollador")]
-        public async Task<IActionResult> Create()
-        {
-            ViewBag.Membership = await membershipBL.GetAllAsync();
-            ViewBag.Privilege = await privilegeBL.GetAllAsync();
-            ViewBag.Error = "";
-            return View();
-        }
-
         // Metod que extrae por Id y devolver a la vista en foramto Json
         [Authorize(Roles = "Desarrollador")]
         [HttpGet]
@@ -77,6 +66,17 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Server___Controller
                 SpiritBaptism = member.BaptismOfTheHolySpirit
             };
             return Json(memberDetails);
+        }
+
+        #region METODO PARA CREAR
+        // Accion Para Mostrar La Vista De Crear
+        [Authorize(Roles = "Desarrollador")]
+        public async Task<IActionResult> Create()
+        {
+            ViewBag.Membership = await membershipBL.GetAllAsync();
+            ViewBag.Privilege = await privilegeBL.GetAllAsync();
+            ViewBag.Error = "";
+            return View();
         }
 
         // Accion Que Recibe Los Datos Del Formulario Para Ser Enviados a La BD
