@@ -1,0 +1,178 @@
+﻿@using MCEI.SysControlAdmin.EN.Membership___EN
+@using MCEI.SysControlAdmin.EN.Privilege___EN
+@model MCEI.SysControlAdmin.EN.Server___EN.Server
+
+@{
+    ViewData["Title"] = "Modificar Servidor";
+    List<Membership> memberships = ViewBag.Membership as List<Membership>;
+    List<Privilege> privileges = ViewBag.Privilege as List<Privilege>;
+}
+
+<h1>Modificar Servidor Existente</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <!-- Campo de Membresía -->
+            <div class="form-group">
+                <label asp-for="IdMembership" class="control-label"></label>
+                <select class="select2 form-select" name="IdMembership" id="IdMembership">
+                    <option selected value="">Seleccionar</option>
+                    @foreach (var item in memberships!)
+                    {
+                        <option value="@item.Id">@item.Name @item.LastName</option>
+                    }
+                </select>
+                <span asp-validation-for="IdMembership" class="text-danger"></span>
+            </div>
+
+            <!-- Nuevos campos de texto readonly -->
+            <div class="form-group">
+                <label for="Dui" class="control-label">Dui</label>
+                <input type="text" id="Dui" class="form-control" readonly />
+            </div>
+
+            <div class="form-group">
+                <label for="Birthdate" class="control-label">Fecha de Nacimiento</label>
+                <input type="date" id="Birthdate" class="form-control" readonly />
+            </div>
+
+            <div class="form-group">
+                <label for="Age" class="control-label">Edad</label>
+                <input type="text" id="Age" class="form-control" readonly />
+            </div>
+
+            <div class="form-group">
+                <label for="Gender" class="control-label">Género</label>
+                <input type="text" id="Gender" class="form-control" readonly />
+            </div>
+
+            <div class="form-group">
+                <label for="Phone" class="control-label">Teléfono</label>
+                <input type="text" id="Phone" class="form-control" readonly />
+            </div>
+
+            <div class="form-group">
+                <label for="CivilStatus" class="control-label">Estado Civil</label>
+                <input type="text" id="CivilStatus" class="form-control" readonly />
+            </div>
+
+            <div class="form-group">
+                <label for="Profession" class="control-label">Profesión u Oficio</label>
+                <input type="text" id="Profession" class="form-control" readonly />
+            </div>
+
+            <div class="form-group">
+                <label for="WaterBaptism" class="control-label">Bautismo en Agua</label>
+                <input type="text" id="WaterBaptism" class="form-control" readonly />
+            </div>
+
+            <div class="form-group">
+                <label for="SpiritBaptism" class="control-label">Bautismo por el Espíritu Santo</label>
+                <input type="text" id="SpiritBaptism" class="form-control" readonly />
+            </div>
+
+            <!-- Campo de Privilegio -->
+            <div class="form-group">
+                <label asp-for="IdPrivilege" class="control-label"></label>
+                <select class="select2 form-select" name="IdPrivilege" id="IdPrivilege">
+                    <option selected value="">Seleccionar</option>
+                    @foreach (var item in privileges!)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="IdPrivilege" class="text-danger"></span>
+            </div>
+
+            <!-- Campo de Estado -->
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <select class="form-select" name="Status" id="Status">
+                    <option selected value="0">Seleccionar</option>
+                    <option value="1">Activo</option>
+                    <option value="2">Inactivo</option>
+                </select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateCreated" class="control-label"></label>
+                <input asp-for="DateCreated" type="date" class="form-control" readonly/>
+                <span asp-validation-for="DateCreated" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateModification" class="control-label"></label>
+                <input asp-for="DateModification" type="date" class="form-control" readonly/>
+                <span asp-validation-for="DateModification" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Modificar Servidor" class="btn btn-primary" /> |
+                <a class="btn btn-outline-secondary" asp-action="Index">Regresar a La Lista</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        $(document).ready(function () {
+
+            // 1. Inicialización de los campos del formulario con los valores del modelo
+            $("#Status").val('@Model.Status');
+            $("#IdMembership").val('@(Model.Membership != null ? Model.Membership.Id : "")'); // Debes usar el Id para que `select2` funcione
+            $("#IdPrivilege").val('@(Model.Privilege != null ? Model.Privilege.Id : "")'); // Asegúrate de que el valor es el Id, no el nombre
+
+            // 2. Inicialización de select2 para los campos de select
+            // $('#IdMembership').select2(); // Asegúrate de que select2 esté habilitado
+            $('#IdPrivilege').select2();
+
+            // 3. Automatización de autocompletar información de membresía
+            $('#IdMembership').on('change', function () {
+                var memberId = $(this).val();
+
+                if (memberId) {
+                    // Realizar la solicitud AJAX para obtener los detalles del miembro
+                    $.ajax({
+                        url: '@Url.Action("GetMembershipDetails", "Server")',
+                        type: 'GET',
+                        data: { id: memberId },
+                        success: function (data) {
+                            // Rellenar los campos con los datos obtenidos
+                            $('#Dui').val(data.dui);
+                            $('#Birthdate').val(data.birthdate);
+                            $('#Age').val(data.age);
+                            $('#Gender').val(data.gender);
+                            $('#Phone').val(data.phone);
+                            $('#CivilStatus').val(data.civilStatus);
+                            $('#Profession').val(data.profession);
+                            $('#WaterBaptism').val(data.waterBaptism);
+                            $('#SpiritBaptism').val(data.spiritBaptism);
+                        },
+                        error: function () {
+                            alert('Error al obtener los detalles del miembro.');
+                        }
+                    });
+                } else {
+                    // Limpiar los campos si no se selecciona ningún miembro
+                    $('#Dui').val('');
+                    $('#Birthdate').val('');
+                    $('#Age').val('');
+                    $('#Gender').val('');
+                    $('#Phone').val('');
+                    $('#CivilStatus').val('');
+                    $('#Profession').val('');
+                    $('#WaterBaptism').val('');
+                    $('#SpiritBaptism').val('');
+                }
+            });
+        });
+    </script>
+}
