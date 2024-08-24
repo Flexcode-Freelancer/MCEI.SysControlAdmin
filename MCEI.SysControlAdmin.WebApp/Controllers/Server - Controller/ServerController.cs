@@ -1,8 +1,10 @@
 ﻿#region REFERENCIAS
 // Referencias Necesarias Para El Correcto Funcionamiento
+using MCEI.SysControlAdmin.BL.HistoryServer___BL;
 using MCEI.SysControlAdmin.BL.Membership___BL;
 using MCEI.SysControlAdmin.BL.Privilege___BL;
 using MCEI.SysControlAdmin.BL.Server___BL;
+using MCEI.SysControlAdmin.EN.HistoryServer___EN;
 using MCEI.SysControlAdmin.EN.Membership___EN;
 using MCEI.SysControlAdmin.EN.Privilege___EN;
 using MCEI.SysControlAdmin.EN.Server___EN;
@@ -23,6 +25,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Server___Controller
         ServerBL serverBL = new ServerBL();
         MembershipBL membershipBL = new MembershipBL();
         PrivilegeBL privilegeBL = new PrivilegeBL();
+        HistoryServerBL historyServerBL = new HistoryServerBL();
 
         #region METODO PARA MOSTRAR INDEX
         // Accion Para Mostrar La Vista Index
@@ -80,7 +83,6 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Server___Controller
             return View();
         }
 
-        // Accion Que Recibe Los Datos Del Formulario Para Ser Enviados a La BD
         [Authorize(Roles = "Desarrollador")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -90,7 +92,23 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Server___Controller
             {
                 server.DateCreated = DateTime.Now;
                 server.DateModification = DateTime.Now;
+
+                // Guarda en la tabla Server
                 int result = await serverBL.CreateAsync(server);
+
+                // Crear un nuevo objeto de tipo HistoryServer y mapear las propiedades de Server
+                var historyServer = new HistoryServer
+                {
+                    IdMembership = server.IdMembership,
+                    IdPrivilege = server.IdPrivilege,
+                    Status = server.Status,
+                    DateCreated = server.DateCreated,
+                    DateModification = server.DateModification,
+                };
+
+                // Guarda en la tabla HistoryServer
+                int resultHistory = await historyServerBL.CreateAsync(historyServer);
+
                 TempData["SuccessMessageCreate"] = "Servidor Agregado Exitosamente";
                 return RedirectToAction(nameof(Index));
             }
@@ -141,6 +159,20 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Server___Controller
                 }
                 server.DateModification = DateTime.Now;
                 int result = await serverBL.UpdateAsync(server);
+
+                // Crear un nuevo objeto de tipo HistoryServer y mapear las propiedades de Server
+                var historyServer = new HistoryServer
+                {
+                    IdMembership = server.IdMembership,
+                    IdPrivilege = server.IdPrivilege,
+                    Status = server.Status,
+                    DateCreated = server.DateCreated,
+                    DateModification = server.DateModification,
+                };
+
+                // Guarda en la tabla HistoryServer
+                int resultHistory = await historyServerBL.CreateAsync(historyServer);
+
                 TempData["SuccessMessageUpdate"] = "Servidor Modificado Exitosamente";
                 return RedirectToAction(nameof(Index));
             }
