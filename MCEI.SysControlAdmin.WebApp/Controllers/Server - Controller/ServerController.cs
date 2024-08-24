@@ -63,7 +63,8 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Server___Controller
                 CivilStatus = member.CivilStatus,
                 Profession = member.ProfessionOrStudy?.Name, // Verifica si esta es la clave correcta
                 WaterBaptism = member.WaterBaptism,
-                SpiritBaptism = member.BaptismOfTheHolySpirit
+                SpiritBaptism = member.BaptismOfTheHolySpirit,
+                Photo = member.ImageData
             };
             return Json(memberDetails);
         }

@@ -62,6 +62,10 @@
         <dd class="col-sm-10" id="SpiritBaptism"></dd>
     </dl>
     <br />
+    <div>
+        <img id="imagenPreview" src="" alt="Vista previa de la imagen" style="max-width: 100%; max-height: 200px;" />
+    </div>
+    <br />
     <h2>Inforamcion Adicional</h2>
     <br />
     <dl class ="row">        
@@ -166,6 +170,7 @@
                             $('#Profession').text(data.profession);
                             $('#WaterBaptism').text(data.waterBaptism);
                             $('#SpiritBaptism').text(data.spiritBaptism);
+                            $('#imagenPreview').attr('src', 'data:image/jpeg;base64,' + data.photo);
                         },
                         error: function () {
                             alert('Error al obtener los detalles del miembro.');

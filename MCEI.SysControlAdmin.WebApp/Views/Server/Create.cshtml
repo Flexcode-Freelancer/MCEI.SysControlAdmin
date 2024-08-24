@@ -75,6 +75,12 @@
                 <input type="text" id="SpiritBaptism" class="form-control" readonly />
             </div>
 
+            <br />
+            <div>
+                <img id="imagenPreview" src="" alt="Vista previa de la imagen" style="max-width: 100%; max-height: 200px;" />
+            </div>
+            <br />
+
             <!-- Campo de Privilegio -->
             <div class="form-group">
                 <label asp-for="IdPrivilege" class="control-label"></label>
@@ -130,15 +136,27 @@
                         type: 'GET',
                         data: { id: memberId },
                         success: function (data) {
-                            $('#Dui').val(data.dui);
-                            $('#Birthdate').val(data.birthdate);
-                            $('#Age').val(data.age);
-                            $('#Gender').val(data.gender);
-                            $('#Phone').val(data.phone);
-                            $('#CivilStatus').val(data.civilStatus);
-                            $('#Profession').val(data.profession);
-                            $('#WaterBaptism').val(data.waterBaptism);
-                            $('#SpiritBaptism').val(data.spiritBaptism);
+                            if (data.error) {
+                                Swal.fire({
+                                    title: 'Error',
+                                    text: data.error,
+                                    icon: 'error',
+                                    confirmButtonText: 'Aceptar'
+                                });
+                            } else {
+                                $('#Dui').val(data.dui);
+                                $('#Birthdate').val(data.birthdate);
+                                $('#Age').val(data.age);
+                                $('#Gender').val(data.gender);
+                                $('#Phone').val(data.phone);
+                                $('#CivilStatus').val(data.civilStatus);
+                                $('#Profession').val(data.profession);
+                                $('#WaterBaptism').val(data.waterBaptism);
+                                $('#SpiritBaptism').val(data.spiritBaptism);
+
+                                // Actualizar la imagen en la vista previa
+                                $('#imagenPreview').attr('src', 'data:image/jpeg;base64,' + data.photo);
+                            }
                         },
                         error: function () {
                             Swal.fire({
@@ -160,6 +178,7 @@
                     $('#Profession').val('');
                     $('#WaterBaptism').val('');
                     $('#SpiritBaptism').val('');
+                    $('#imagenPreview').attr('src', ''); // Limpiar la imagen
                 }
             });
 
@@ -174,29 +193,29 @@
             }
 
             // Mostrar error de ViewBag.Error si es necesario
-            @if (!string.IsNullOrEmpty(ViewBag.Error))
-            {
-                @:showErrorAlert('@ViewBag.Error');
-            }
+        @if (!string.IsNullOrEmpty(ViewBag.Error))
+        {
+            @:showErrorAlert('@ViewBag.Error');
+        }
 
-            // Alerta con SweetAlert2 al crear registro
-            window.CreateRecord = function(e) {
-                e.preventDefault();
-                const form = document.getElementById('Form');
+                // Alerta con SweetAlert2 al crear registro
+                window.CreateRecord = function(e) {
+                    e.preventDefault();
+                    const form = document.getElementById('Form');
 
-                // Si todos los campos son válidos, muestra la alerta de confirmación
-                Swal.fire({
-                    title: '¿Guardar Nuevo Registro?',
-                    icon: 'question',
-                    showCancelButton: true,
-                    confirmButtonText: 'Sí, Guardar Registro',
-                    cancelButtonText: 'Cancelar'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        form.submit();
-                    }
-                });
-            }
+                    // Si todos los campos son válidos, muestra la alerta de confirmación
+                    Swal.fire({
+                        title: '¿Guardar Nuevo Registro?',
+                        icon: 'question',
+                        showCancelButton: true,
+                        confirmButtonText: 'Sí, Guardar Registro',
+                        cancelButtonText: 'Cancelar'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit();
+                        }
+                    });
+                }
         });
     </script>
 }
