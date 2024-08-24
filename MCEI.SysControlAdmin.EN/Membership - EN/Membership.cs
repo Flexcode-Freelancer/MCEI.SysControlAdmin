@@ -9,6 +9,7 @@ using MCEI.SysControlAdmin.EN.ProfessionOrStudy___EN;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using MCEI.SysControlAdmin.EN.Server___EN;
+using MCEI.SysControlAdmin.EN.HistoryServer___EN;
 
 #endregion
 
@@ -173,9 +174,9 @@ namespace MCEI.SysControlAdmin.EN.Membership___EN
 
         public ProfessionOrStudy? ProfessionOrStudy { get; set; } //propiedad de navegación
 
-        public List<Server> Servers { get; set; } = new List<Server>(); // Propiedad de navegacion
+        public List<Server> Server { get; set; } = new List<Server>(); // Propiedad de navegacion
 
-        //public List<HistoryServer> HistoryServers { get; set; } = new List<HistoryServer>(); // Propiedad de navegacion
+        public List<HistoryServer> HistoryServer { get; set; } = new List<HistoryServer>(); // Propiedad de navegacion
     }
 
     public enum Membership_Status
