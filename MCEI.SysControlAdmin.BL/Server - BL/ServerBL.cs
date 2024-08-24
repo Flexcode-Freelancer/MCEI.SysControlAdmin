@@ -62,7 +62,7 @@ namespace MCEI.SysControlAdmin.BL.Server___BL
         }
         #endregion
 
-        #region METODO PARA INCLUIR HORARIO E INSTRUCTOR
+        #region METODO PARA INCLUIR PRIVILEGIO Y PRIVILEGIO
         public async Task<List<Server>> SearchIncludeAsync(Server server)
         {
             return await ServerDAL.SearchIncludeAsync(server);
