@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using MCEI.SysControlAdmin.EN.HistoryServer___EN;
 using MCEI.SysControlAdmin.DAL.HistoryServer___DAL;
 
-
 #endregion
 
 namespace MCEI.SysControlAdmin.BL.HistoryServer___BL
@@ -44,6 +43,13 @@ namespace MCEI.SysControlAdmin.BL.HistoryServer___BL
         public async Task<List<HistoryServer>> SearchAsync(HistoryServer historyServer)
         {
             return await HistoryServerDAL.SearchAsync(historyServer);
+        }
+        #endregion
+
+        #region METODO PARA INCLUIR PRIVILEGIO Y PRIVILEGIO
+        public async Task<List<HistoryServer>> SearchIncludeAsync(HistoryServer historyServer)
+        {
+            return await HistoryServerDAL.SearchIncludeAsync(historyServer);
         }
         #endregion
     }
