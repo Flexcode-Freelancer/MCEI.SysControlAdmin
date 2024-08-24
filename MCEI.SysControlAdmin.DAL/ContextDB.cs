@@ -5,15 +5,15 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+// Referencias Necesarias Para El Correcto Funcionamiento
+using Microsoft.EntityFrameworkCore;
+using MCEI.SysControlAdmin.EN.HistoryServer___EN;
 using MCEI.SysControlAdmin.EN.Membership___EN;
 using MCEI.SysControlAdmin.EN.Privilege___EN;
 using MCEI.SysControlAdmin.EN.ProfessionOrStudy___EN;
 using MCEI.SysControlAdmin.EN.Role___EN;
 using MCEI.SysControlAdmin.EN.Server___EN;
 using MCEI.SysControlAdmin.EN.User___EN;
-
-// Referencias Necesarias Para El Correcto Funcionamiento
-using Microsoft.EntityFrameworkCore;
 
 
 #endregion
@@ -30,6 +30,7 @@ namespace MCEI.SysControlAdmin.DAL
         public DbSet<Membership> Membership { get; set; }
         public DbSet<Privilege> Privilege { get; set; }
         public DbSet<Server> Server { get; set; }
+        public DbSet<HistoryServer> HistoryServer { get; set; }
         #endregion
 
         // Metodo de Conexion a la Base de Datos
