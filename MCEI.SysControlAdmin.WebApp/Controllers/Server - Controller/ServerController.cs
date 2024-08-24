@@ -56,7 +56,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Server___Controller
             var memberDetails = new
             {
                 Dui = member.Dui,
-                Birthdate = member.DateOfBirth, // Para que se muestre correctamente en el input date
+                Birthdate = member.DateOfBirth.ToString("dd/MM/yyyy"), // Para que se muestre correctamente en el input date
                 Age = member.Age,
                 Gender = member.Gender,
                 Phone = member.Phone,
