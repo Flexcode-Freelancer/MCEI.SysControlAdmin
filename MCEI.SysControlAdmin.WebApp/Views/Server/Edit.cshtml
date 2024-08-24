@@ -13,9 +13,10 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form id="Form" asp-action="Edit" onsubmit="return confirmSubmit(event)">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
+
             <!-- Campo de Membresía -->
             <div class="form-group">
                 <label asp-for="IdMembership" class="control-label"></label>
@@ -100,12 +101,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="DateCreated" class="control-label"></label>
-                <input asp-for="DateCreated" type="date" class="form-control" readonly/>
+                <input asp-for="DateCreated" type="date" class="form-control" readonly />
                 <span asp-validation-for="DateCreated" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="DateModification" class="control-label"></label>
-                <input asp-for="DateModification" type="date" class="form-control" readonly/>
+                <input asp-for="DateModification" type="date" class="form-control" readonly />
                 <span asp-validation-for="DateModification" class="text-danger"></span>
             </div>
             <br />
@@ -157,7 +158,12 @@
                             $('#SpiritBaptism').val(data.spiritBaptism);
                         },
                         error: function () {
-                            alert('Error al obtener los detalles del miembro.');
+                            Swal.fire({
+                                title: 'Error',
+                                text: 'Error al obtener los detalles del miembro.',
+                                icon: 'error',
+                                confirmButtonText: 'Aceptar'
+                            });
                         }
                     });
                 } else {
@@ -182,6 +188,40 @@
                 var memberId = $(this).val();
                 autocompleteMembershipDetails(memberId);
             });
+
+            // Función para mostrar alertas de error con SweetAlert2
+            function showErrorAlert(message) {
+                Swal.fire({
+                    title: 'Error',
+                    text: message,
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
+            }
+
+            // Mostrar error de ViewBag.Error si es necesario
+            @if (!string.IsNullOrEmpty(ViewBag.Error))
+            {
+                @:showErrorAlert('@ViewBag.Error');
+            }
         });
+
+        // Función para mostrar alerta de confirmación
+        function confirmSubmit(event) {
+            event.preventDefault(); // Prevenir el envío del formulario por defecto
+            const form = document.getElementById('Form');
+
+            Swal.fire({
+                title: '¿Modificar Servidor Existente?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Si, Modificar Servidor',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        }
     </script>
 }

@@ -111,6 +111,43 @@
 
 @section Scripts {
     <script>
+
+        // Función para mostrar alertas de error utilizando SweetAlert2
+        function showErrorAlert(message) {
+            Swal.fire({
+                title: 'Error',
+                text: message,
+                icon: 'error'
+            });
+        }
+
+        // Evento que se ejecuta una vez que el DOM ha sido completamente cargado
+        document.addEventListener("DOMContentLoaded", function () {
+
+            // Mostrar alerta de ViewBag.Error si es necesario
+            @if (!string.IsNullOrEmpty(ViewBag.Error))
+            {
+                @:showErrorAlert('@ViewBag.Error');
+            }
+
+            // Agregar el evento de clic al botón de modificar
+            document.getElementById('modifyButton').addEventListener('click', function (event) {
+                event.preventDefault(); // Prevenir la acción predeterminada del enlace
+                Swal.fire({
+                    title: '¿Ir a La Vista Modificar?',
+                    text: "¿Estás seguro de que quieres ir a la vista Modificar?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Sí, Ir a La Vista Modificar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '@Url.Action("Edit", "Server", new { id = Model.Id })';
+                    }
+                });
+            });
+        });
+
         $(document).ready(function () {
             // Función para autocompletar información de membresía
             function autocompleteMembershipDetails(memberId) {

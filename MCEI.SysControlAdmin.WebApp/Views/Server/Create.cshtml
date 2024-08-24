@@ -13,7 +13,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form id="Form" asp-action="Create" onsubmit="CreateRecord(event)">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <!-- Campo de Membresía -->
@@ -92,8 +92,8 @@
             <div class="form-group">
                 <label asp-for="Status" class="control-label"></label>
                 <select class="form-select" name="Status">
-                    <option selected value="0">Seleccionar</option>
-                    <option value="1">Activo</option>
+                    <option value="">Seleccionar</option>
+                    <option selected value="1">Activo</option>
                     <option value="2">Inactivo</option>
                 </select>
                 <span asp-validation-for="Status" class="text-danger"></span>
@@ -115,14 +115,12 @@
     }
 
     <script>
-        // Inicializamos el Plugin de Autocompletado y Busqueda De Profesion u Oficio
         $(document).ready(function () {
-
-            // Carga de select2 a select´s de Membership y Privilege
+            // Inicializar select2 para los selects de Membership y Privilege
             $('#IdMembership').select2();
             $('#IdPrivilege').select2();
-            
-            // Automatizacion de autocompletar informacion de membresia
+
+            // Automatizar el autocompletado de la información de membresía
             $('#IdMembership').on('change', function () {
                 var memberId = $(this).val();
 
@@ -132,18 +130,23 @@
                         type: 'GET',
                         data: { id: memberId },
                         success: function (data) {
-                            $('#Dui').val(data.dui); // Verifica que 'dui' coincida con la clave en tu JSON
-                            $('#Birthdate').val(data.birthdate); // Asegúrate que 'birthdate' sea la clave correcta
-                            $('#Age').val(data.age); // Verifica que 'age' sea correcto
-                            $('#Gender').val(data.gender); // Verifica que 'gender' sea correcto
-                            $('#Phone').val(data.phone); // Verifica que 'phone' sea correcto
-                            $('#CivilStatus').val(data.civilStatus); // Verifica que 'civilStatus' sea correcto
-                            $('#Profession').val(data.profession); // Asegúrate de que 'profession' coincida
-                            $('#WaterBaptism').val(data.waterBaptism); // Verifica que 'waterBaptism' sea correcto
-                            $('#SpiritBaptism').val(data.spiritBaptism); // Verifica que 'spiritBaptism' sea correcto
+                            $('#Dui').val(data.dui);
+                            $('#Birthdate').val(data.birthdate);
+                            $('#Age').val(data.age);
+                            $('#Gender').val(data.gender);
+                            $('#Phone').val(data.phone);
+                            $('#CivilStatus').val(data.civilStatus);
+                            $('#Profession').val(data.profession);
+                            $('#WaterBaptism').val(data.waterBaptism);
+                            $('#SpiritBaptism').val(data.spiritBaptism);
                         },
                         error: function () {
-                            alert('Error al obtener los detalles del miembro.');
+                            Swal.fire({
+                                title: 'Error',
+                                text: 'Error al obtener los detalles del miembro.',
+                                icon: 'error',
+                                confirmButtonText: 'Aceptar'
+                            });
                         }
                     });
                 } else {
@@ -159,6 +162,41 @@
                     $('#SpiritBaptism').val('');
                 }
             });
+
+            // Función para mostrar alertas de error con SweetAlert2
+            function showErrorAlert(message) {
+                Swal.fire({
+                    title: 'Error',
+                    text: message,
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
+            }
+
+            // Mostrar error de ViewBag.Error si es necesario
+            @if (!string.IsNullOrEmpty(ViewBag.Error))
+            {
+                @:showErrorAlert('@ViewBag.Error');
+            }
+
+            // Alerta con SweetAlert2 al crear registro
+            window.CreateRecord = function(e) {
+                e.preventDefault();
+                const form = document.getElementById('Form');
+
+                // Si todos los campos son válidos, muestra la alerta de confirmación
+                Swal.fire({
+                    title: '¿Guardar Nuevo Registro?',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Sí, Guardar Registro',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            }
         });
     </script>
 }

@@ -105,7 +105,7 @@
         </dd>
     </dl>
     <br />
-    <form asp-action="Delete">
+    <form id="Form" asp-action="Delete" onsubmit="CreateRecord(event)">
         <input type="submit" value="Eliminar Servidor" class="btn btn-danger" /> |
         <a class="btn btn-outline-secondary" asp-action="Index">Regresar a La Lista</a>
     </form>
@@ -113,6 +113,22 @@
 
 @section Scripts {
     <script>
+
+        // Función para mostrar una alerta de error utilizando SweetAlert2
+        function showErrorAlert(message) {
+            Swal.fire({
+                title: 'Error',
+                text: message,
+                icon: 'error'
+            });
+        }
+
+        // Mostrar alerta de ViewBag.Error si es necesario
+        @if (!string.IsNullOrEmpty(ViewBag.Error))
+        {
+            @:showErrorAlert('@ViewBag.Error');
+        }
+
         $(document).ready(function () {
             // Función para autocompletar información de membresía
             function autocompleteMembershipDetails(memberId) {
@@ -156,5 +172,24 @@
             // Autocompletar al cargar la página si hay un IdMembership seleccionado
             autocompleteMembershipDetails(selectedMembershipId);
         });
+
+        // Función para mostrar una alerta de confirmación antes de eliminar un registro
+        function CreateRecord(e) {
+            e.preventDefault();
+            const form = document.getElementById('Form');
+
+            Swal.fire({
+                title: '¿Eliminar Este Registro?',
+                text: '¿Estás seguro de eliminar el siguiente registro? Recuerda que no puedes revertir los cambios.',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sí, Eliminar Registro',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        }
     </script>
 }
