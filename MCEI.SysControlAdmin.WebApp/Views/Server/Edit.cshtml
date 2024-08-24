@@ -9,7 +9,7 @@
 }
 
 <h1>Modificar Servidor Existente</h1>
-
+<span>@ViewBag.Error</span>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -37,7 +37,7 @@
 
             <div class="form-group">
                 <label for="Birthdate" class="control-label">Fecha de Nacimiento</label>
-                <input type="date" id="Birthdate" class="form-control" readonly />
+                <input type="text" id="Birthdate" class="form-control" readonly />
             </div>
 
             <div class="form-group">
@@ -124,28 +124,28 @@
 
     <script>
         $(document).ready(function () {
-
-            // 1. Inicialización de los campos del formulario con los valores del modelo
-            $("#Status").val('@Model.Status');
-            $("#IdMembership").val('@(Model.Membership != null ? Model.Membership.Id : "")'); // Debes usar el Id para que `select2` funcione
-            $("#IdPrivilege").val('@(Model.Privilege != null ? Model.Privilege.Id : "")'); // Asegúrate de que el valor es el Id, no el nombre
-
-            // 2. Inicialización de select2 para los campos de select
-            // $('#IdMembership').select2(); // Asegúrate de que select2 esté habilitado
+            // Inicializar select2 para los selects IdMembership e IdPrivilege
+            $('#IdMembership').select2();
             $('#IdPrivilege').select2();
 
-            // 3. Automatización de autocompletar información de membresía
-            $('#IdMembership').on('change', function () {
-                var memberId = $(this).val();
+            // Cargar los valores seleccionados en los selects
+            var selectedMembershipId = '@Model.IdMembership';
+            var selectedPrivilegeId = '@Model.IdPrivilege';
+            var selectedStatus = '@Model.Status';
 
+            // Establecer el valor seleccionado usando jQuery
+            $('#IdMembership').val(selectedMembershipId).trigger('change');
+            $('#IdPrivilege').val(selectedPrivilegeId).trigger('change');
+            $('#Status').val(selectedStatus).trigger('change');
+
+            // Función para autocompletar información de membresía
+            function autocompleteMembershipDetails(memberId) {
                 if (memberId) {
-                    // Realizar la solicitud AJAX para obtener los detalles del miembro
                     $.ajax({
                         url: '@Url.Action("GetMembershipDetails", "Server")',
                         type: 'GET',
                         data: { id: memberId },
                         success: function (data) {
-                            // Rellenar los campos con los datos obtenidos
                             $('#Dui').val(data.dui);
                             $('#Birthdate').val(data.birthdate);
                             $('#Age').val(data.age);
@@ -172,6 +172,15 @@
                     $('#WaterBaptism').val('');
                     $('#SpiritBaptism').val('');
                 }
+            }
+
+            // Autocompletar al cargar la página si hay un IdMembership seleccionado
+            autocompleteMembershipDetails(selectedMembershipId);
+
+            // Automatización de autocompletar al cambiar el valor del select
+            $('#IdMembership').on('change', function () {
+                var memberId = $(this).val();
+                autocompleteMembershipDetails(memberId);
             });
         });
     </script>
