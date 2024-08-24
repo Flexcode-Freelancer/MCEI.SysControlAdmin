@@ -75,3 +75,12 @@ CREATE TABLE [Server](
     DateModification DATETIME NOT NULL
 );
 GO
+CREATE TABLE HistoryServer(
+	Id INT NOT NULL PRIMARY KEY IDENTITY (1,1),
+	IdMembership INT NOT NULL FOREIGN KEY REFERENCES Membership(Id),
+	IdPrivilege INT NOT NULL FOREIGN KEY REFERENCES Privilege(Id),
+	[Status] TINYINT NOT NULL,
+	DateCreated DATETIME NOT NULL,
+    DateModification DATETIME NOT NULL
+);
+GO
