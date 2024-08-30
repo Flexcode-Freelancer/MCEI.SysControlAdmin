@@ -14,6 +14,9 @@ using MCEI.SysControlAdmin.EN.ProfessionOrStudy___EN;
 using MCEI.SysControlAdmin.EN.Role___EN;
 using MCEI.SysControlAdmin.EN.Server___EN;
 using MCEI.SysControlAdmin.EN.User___EN;
+using MCEI.SysControlAdmin.EN.Juventud___EN;
+using MCEI.SysControlAdmin.EN.ServerJei___EN;
+using MCEI.SysControlAdmin.EN.HistoryServerJei___EN;
 
 
 #endregion
@@ -31,6 +34,9 @@ namespace MCEI.SysControlAdmin.DAL
         public DbSet<Privilege> Privilege { get; set; }
         public DbSet<Server> Server { get; set; }
         public DbSet<HistoryServer> HistoryServer { get; set; }
+        public DbSet<Juventud> Juventud { get; set; }
+        public DbSet<ServerJei> ServerJei { get; set; }
+        public DbSet<HistoryServerJei> HistoryServerJei { get; set; }
         #endregion
 
         // Metodo de Conexion a la Base de Datos
