@@ -23,7 +23,7 @@ namespace MCEI.SysControlAdmin.EN.HistoryServerJei___EN
         [ForeignKey("Juventud")]
         [Required(ErrorMessage = "La Juventud es Requerida")]
         [Display(Name = "Joven")]
-        public int IdMembership { get; set; }
+        public int IdJuventud { get; set; }
 
         [ForeignKey("Privilege")]
         [Required(ErrorMessage = "El Privilegio Es Requerido")]
