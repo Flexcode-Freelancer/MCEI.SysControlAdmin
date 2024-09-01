@@ -1,0 +1,228 @@
+﻿@using MCEI.SysControlAdmin.EN.Juventud___EN
+@using MCEI.SysControlAdmin.EN.Privilege___EN
+@model MCEI.SysControlAdmin.EN.ServerJei___EN.ServerJei
+
+@{
+    ViewData["Title"] = "Modificar Servidor Jei";
+    List<Juventud> juventud = ViewBag.Juventud as List<Juventud>;
+    List<Privilege> privileges = ViewBag.Privilege as List<Privilege>;
+}
+
+<h1>Modificar Servidor Juvenil Existente</h1>
+<span>@ViewBag.Error</span>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form id="Form" asp-action="Edit" onsubmit="return confirmSubmit(event)">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+
+            <!-- Campo de Membresía -->
+            <div class="form-group">
+                <label asp-for="IdJuventud" class="control-label"></label>
+                <select class="select2 form-select" name="IdJuventud" id="IdJuventud">
+                    <option selected value="">Seleccionar</option>
+                    @foreach (var item in juventud!)
+                    {
+                        <option value="@item.Id">@item.Name @item.LastName</option>
+                    }
+                </select>
+                <span asp-validation-for="IdJuventud" class="text-danger"></span>
+            </div>
+
+            <!-- Nuevos campos de texto readonly -->
+
+            <div class="form-group">
+                <label for="Birthdate" class="control-label">Fecha de Nacimiento</label>
+                <input type="text" id="Birthdate" class="form-control" readonly />
+            </div>
+
+            <div class="form-group">
+                <label for="Age" class="control-label">Edad</label>
+                <input type="text" id="Age" class="form-control" readonly />
+            </div>
+
+            <div class="form-group">
+                <label for="Gender" class="control-label">Género</label>
+                <input type="text" id="Gender" class="form-control" readonly />
+            </div>
+
+            <div class="form-group">
+                <label for="Phone" class="control-label">Teléfono</label>
+                <input type="text" id="Phone" class="form-control" readonly />
+            </div>
+
+            <div class="form-group">
+                <label for="CivilStatus" class="control-label">Estado Civil</label>
+                <input type="text" id="CivilStatus" class="form-control" readonly />
+            </div>
+
+            <div class="form-group">
+                <label for="Profession" class="control-label">Profesión u Oficio</label>
+                <input type="text" id="Profession" class="form-control" readonly />
+            </div>
+
+            <div class="form-group">
+                <label for="WaterBaptism" class="control-label">Bautismo en Agua</label>
+                <input type="text" id="WaterBaptism" class="form-control" readonly />
+            </div>
+
+            <div class="form-group">
+                <label for="SpiritBaptism" class="control-label">Bautismo por el Espíritu Santo</label>
+                <input type="text" id="SpiritBaptism" class="form-control" readonly />
+            </div>
+
+            <br />
+            <div>
+                <img id="imagenPreview" src="" alt="Vista previa de la imagen" style="max-width: 100%; max-height: 200px;" />
+            </div>
+            <br />
+
+            <!-- Campo de Privilegio -->
+            <div class="form-group">
+                <label asp-for="IdPrivilege" class="control-label"></label>
+                <select class="select2 form-select" name="IdPrivilege" id="IdPrivilege">
+                    <option selected value="">Seleccionar</option>
+                    @foreach (var item in privileges!)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="IdPrivilege" class="text-danger"></span>
+            </div>
+
+            <!-- Campo de Estado -->
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <select class="form-select" name="Status" id="Status">
+                    <option selected value="0">Seleccionar</option>
+                    <option value="1">Activo</option>
+                    <option value="2">Inactivo</option>
+                </select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateCreated" class="control-label"></label>
+                <input asp-for="DateCreated" type="date" class="form-control" readonly />
+                <span asp-validation-for="DateCreated" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateModification" class="control-label"></label>
+                <input asp-for="DateModification" type="date" class="form-control" readonly />
+                <span asp-validation-for="DateModification" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Modificar Servidor Jei" class="btn btn-primary" /> |
+                <a class="btn btn-outline-secondary" asp-action="Index">Regresar a La Lista</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        $(document).ready(function () {
+            // Inicializar select2 para los selects IdMembership e IdPrivilege
+            $('#IdJuventud').select2();
+            $('#IdPrivilege').select2();
+
+            // Cargar los valores seleccionados en los selects
+            var selectedJuventudId = '@Model.IdJuventud';
+            var selectedPrivilegeId = '@Model.IdPrivilege';
+            var selectedStatus = '@Model.Status';
+
+            // Establecer el valor seleccionado usando jQuery
+            $('#IdJuventud').val(selectedJuventudId).trigger('change');
+            $('#IdPrivilege').val(selectedPrivilegeId).trigger('change');
+            $('#Status').val(selectedStatus).trigger('change');
+
+            // Función para autocompletar información de membresía
+            function autocompleteJuventudDetails(juventudId) {
+                if (juventudId) {
+                    $.ajax({
+                        url: '@Url.Action("GetJuventudDetails", "ServerJei")',
+                        type: 'GET',
+                        data: { id: juventudId },
+                        success: function (data) {
+                            $('#Birthdate').val(data.birthdate);
+                            $('#Age').val(data.age);
+                            $('#Gender').val(data.gender);
+                            $('#Phone').val(data.phone);
+                            $('#CivilStatus').val(data.civilStatus);
+                            $('#Profession').val(data.profession);
+                            $('#WaterBaptism').val(data.waterBaptism);
+                            $('#SpiritBaptism').val(data.spiritBaptism);
+                            $('#imagenPreview').attr('src', 'data:image/jpeg;base64,' + data.photo);
+                        },
+                        error: function () {
+                            Swal.fire({
+                                title: 'Error',
+                                text: 'Error al obtener los detalles del miembro.',
+                                icon: 'error',
+                                confirmButtonText: 'Aceptar'
+                            });
+                        }
+                    });
+                } else {
+                    // Limpiar los campos si no se selecciona ningún miembro
+                    $('#Birthdate').val('');
+                    $('#Age').val('');
+                    $('#Gender').val('');
+                    $('#Phone').val('');
+                    $('#CivilStatus').val('');
+                    $('#Profession').val('');
+                    $('#WaterBaptism').val('');
+                    $('#SpiritBaptism').val('');
+                }
+            }
+
+            // Autocompletar al cargar la página si hay un IdMembership seleccionado
+            autocompleteJuventudDetails(selectedJuventudId);
+
+            // Automatización de autocompletar al cambiar el valor del select
+            $('#IdJuventud').on('change', function () {
+                var juventudId = $(this).val();
+                autocompleteJuventudDetails(juventudId);
+            });
+
+            // Función para mostrar alertas de error con SweetAlert2
+            function showErrorAlert(message) {
+                Swal.fire({
+                    title: 'Error',
+                    text: message,
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
+            }
+
+            // Mostrar error de ViewBag.Error si es necesario
+            @if (!string.IsNullOrEmpty(ViewBag.Error))
+            {
+                @:showErrorAlert('@ViewBag.Error');
+            }
+        });
+
+        // Función para mostrar alerta de confirmación
+        function confirmSubmit(event) {
+            event.preventDefault(); // Prevenir el envío del formulario por defecto
+            const form = document.getElementById('Form');
+
+            Swal.fire({
+                title: '¿Modificar Servidor Jei Existente?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Si, Modificar Servidor Jei',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        }
+    </script>
+}

@@ -1,0 +1,194 @@
+﻿@model MCEI.SysControlAdmin.EN.ServerJei___EN.ServerJei
+
+@{
+    ViewData["Title"] = "Eliminar Servidor";
+}
+
+<h1>Eliminar Servidor Juvenil Existente</h1>
+<p class="alert alert-danger">¿Estas Seguro De Eliminar el Siguiente Registro? Recuerda No Puedes Revertir Los Cambios.</p>
+<hr />
+<div>
+    <h2>Inforamcion Personal</h2>
+    <br />
+    <dl class="row">
+        <!-- Campo oculto para IdMembership -->
+        <input type="hidden" id="IdJuventud" value="@Model.IdJuventud" />
+        <dt class="col-sm-2">
+            Nombre
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Juventud!.Name)
+        </dd>
+        <dt class="col-sm-2">
+            Apellido
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Juventud!.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            Fecha de Nacimiento
+        </dt>
+        <dd class="col-sm-10" id="Birthdate"></dd>
+        <dt class="col-sm-2">
+            Edad
+        </dt>
+        <dd class="col-sm-10" id="Age"> Años</dd>
+        <dt class="col-sm-2">
+            Genero
+        </dt>
+        <dd class="col-sm-10" id="Gender"></dd>
+        <dt class="col-sm-2">
+            Telefono
+        </dt>
+        <dd class="col-sm-10" id="Phone"></dd>
+        <dt class="col-sm-2">
+            Estado Civil
+        </dt>
+        <dd class="col-sm-10" id="CivilStatus"></dd>
+        <dt class="col-sm-2">
+            Profesión u Oficio
+        </dt>
+        <dd class="col-sm-10" id="Profession"></dd>
+        <dt class="col-sm-2">
+            Bautismo en Agua
+        </dt>
+        <dd class="col-sm-10" id="WaterBaptism"></dd>
+        <dt class="col-sm-2">
+            Bautismo Por El Espiritu Santo
+        </dt>
+        <dd class="col-sm-10" id="SpiritBaptism"></dd>
+    </dl>
+    <br />
+    <div>
+        <img id="imagenPreview" src="" alt="Vista previa de la imagen" style="max-width: 100%; max-height: 200px;" />
+    </div>
+    <br />
+    <h2>Inforamcion Adicional</h2>
+    <br />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IdPrivilege)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Privilege!.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        @if (Model.Status == 1)
+        {
+            <dd class="col-sm-10">
+                Activo
+            </dd>
+        }
+        else if (Model.Status == 2)
+        {
+            <dd class="col-sm-10">
+                Inactivo
+            </dd>
+        }
+        else
+        {
+            <dd> </dd>
+        }
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DateCreated)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DateModification)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DateModification)
+        </dd>
+    </dl>
+    <br />
+    <form id="Form" asp-action="Delete" onsubmit="CreateRecord(event)">
+        <input type="submit" value="Eliminar Servidor Jei" class="btn btn-danger" /> |
+        <a class="btn btn-outline-secondary" asp-action="Index">Regresar a La Lista</a>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+
+        // Función para mostrar una alerta de error utilizando SweetAlert2
+        function showErrorAlert(message) {
+            Swal.fire({
+                title: 'Error',
+                text: message,
+                icon: 'error'
+            });
+        }
+
+        // Mostrar alerta de ViewBag.Error si es necesario
+        @if (!string.IsNullOrEmpty(ViewBag.Error))
+        {
+            @:showErrorAlert('@ViewBag.Error');
+        }
+
+        $(document).ready(function () {
+            // Función para autocompletar información de membresía
+            function autocompleteJuventudDetails(juventudId) {
+                if (juventudId) {
+                    $.ajax({
+                        url: '@Url.Action("GetJuventudDetails", "ServerJei")',
+                        type: 'GET',
+                            data: { id: juventudId },
+                        success: function (data) {
+                            $('#Birthdate').text(data.birthdate);
+                            $('#Age').text(data.age + " Años");
+                            $('#Gender').text(data.gender);
+                            $('#Phone').text(data.phone);
+                            $('#CivilStatus').text(data.civilStatus);
+                            $('#Profession').text(data.profession);
+                            $('#WaterBaptism').text(data.waterBaptism);
+                            $('#SpiritBaptism').text(data.spiritBaptism);
+                            $('#imagenPreview').attr('src', 'data:image/jpeg;base64,' + data.photo);
+                        },
+                        error: function () {
+                            alert('Error al obtener los detalles del miembro.');
+                        }
+                    });
+                } else {
+                    // Limpiar los campos si no se selecciona ningún miembro
+                    $('#Birthdate').text('');
+                    $('#Age').text('');
+                    $('#Gender').text('');
+                    $('#Phone').text('');
+                    $('#CivilStatus').text('');
+                    $('#Profession').text('');
+                    $('#WaterBaptism').text('');
+                    $('#SpiritBaptism').text('');
+                }
+            }
+
+            // Obtener el IdMembership del modelo
+            var selectedJuventudId = '@Model.IdJuventud';
+
+            // Autocompletar al cargar la página si hay un IdMembership seleccionado
+                autocompleteJuventudDetails(selectedJuventudId);
+        });
+
+        // Función para mostrar una alerta de confirmación antes de eliminar un registro
+        function CreateRecord(e) {
+            e.preventDefault();
+            const form = document.getElementById('Form');
+
+            Swal.fire({
+                title: '¿Eliminar Este Registro?',
+                text: '¿Estás seguro de eliminar el siguiente registro? Recuerda que no puedes revertir los cambios.',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sí, Eliminar Registro',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        }
+    </script>
+}
