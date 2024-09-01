@@ -20,7 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\HistoryServerJei - Controller\" />
     <Folder Include="wwwroot\plugins\BarCode\js\" />
     <Folder Include="wwwroot\plugins\DataTables\js\" />
     <Folder Include="wwwroot\plugins\Select2\js\" />
