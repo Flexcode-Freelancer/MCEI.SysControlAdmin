@@ -1,0 +1,167 @@
+﻿@using MCEI.SysControlAdmin.EN.Juventud___EN
+@using MCEI.SysControlAdmin.EN.Privilege___EN
+@model IEnumerable<MCEI.SysControlAdmin.EN.HistoryServerJei___EN.HistoryServerJei>
+
+@{
+    ViewData["Title"] = "Historial Servidores Jei";
+    List<Juventud> juventud = ViewBag.Juventud as List<Juventud>;
+    List<Privilege> privileges = ViewBag.Privileges as List<Privilege>;
+}
+
+<h1>Historial De Servidores Juveniles</h1>
+<hr />
+<div class="container">
+    <form asp-action="Index">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="form-group">Juventud</label>
+                    <select class="select2 form-select" name="IdJuventud" id="IdJuventud">
+                        <option selected value="">Seleccionar</option>
+                        @foreach (var item in juventud!)
+                        {
+                            <option value="@item.Id">@item.Name @item.LastName</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="form-group">Privilegio</label>
+                    <select class="select2 form-select" name="IdPrivilege" id="IdPrivilege">
+                        <option selected value="">Seleccionar</option>
+                        @foreach (var item in privileges!)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="Status">Estatus</label>
+                    <select class="form-select" name="Status">
+                        <option selected value="0">Seleccionar</option>
+                        <option value="1">Activo</option>
+                        <option value="2">Inactivo</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <input type="submit" class="btn btn-outline-success m-1" value="Buscar Servidor Jei" /> &nbsp;&nbsp;
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<br />
+<br />
+<h2>Tabla de Resultados</h2>
+<br />
+<table id="ResultData" class="hover" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Apellido
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdPrivilege)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Juventud!.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Juventud!.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Privilege!.Name)
+                </td>
+                @if (item.Status == 1)
+                {
+                    <td>Activo</td>
+                }
+                else if (item.Status == 2)
+                {
+                    <td>Inactivo</td>
+                }
+                else
+                {
+                    <td></td>
+                }
+                <td>
+                    @Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-outline-info m-1" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        // Inicializamos el Plugin de Autocompletado y Busqueda De Profesion u Oficio
+        $(document).ready(function () {
+            $('#IdJuventud').select2();
+            $('#IdPrivilege').select2();
+        });
+        new DataTable('#ResultData', {
+            info: false,
+            order: false,
+            Response: true,
+            pagingType: 'simple_numbers',
+            language: {
+                search: 'Busqueda Rapida :',
+                searchPlaceholder: 'Ingresar',
+                lengthMenu: '_MENU_ Mostrar',
+                emptyTable: 'No Hay Datos Que Coincidan Con Su Criterio De Búsqueda.',
+                zeroRecords: 'No Existen Registros Segun La Busqueda',
+                processing: 'Procesando...',
+            }
+        });
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 8000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer);
+                toast.addEventListener('mouseleave', Swal.resumeTimer);
+            }
+        });
+        // Comprobar si hay mensajes de éxito y mostrar notificaciones del sistema
+        // const successMessages = {
+        //     Creado: '@TempData["SuccessMessageCreate"]',
+        //     Modificado: '@TempData["SuccessMessageUpdate"]',
+        //     Eliminado: '@TempData["SuccessMessageDelete"]'
+        // };
+        // for (const messageType in successMessages) {
+        //     const message = successMessages[messageType];
+        //     if (message) {
+        //         Toast.fire({
+        //             icon: "success",
+        //             title: `¡${messageType} Exitosamente!`,
+        //             text: message
+        //         });
+        //     }
+        // }
+    </script>
+}
