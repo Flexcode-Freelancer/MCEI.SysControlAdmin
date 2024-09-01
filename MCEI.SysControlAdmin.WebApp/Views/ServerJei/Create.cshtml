@@ -1,0 +1,215 @@
+﻿@using MCEI.SysControlAdmin.EN.Juventud___EN
+@using MCEI.SysControlAdmin.EN.Privilege___EN
+@model MCEI.SysControlAdmin.EN.ServerJei___EN.ServerJei
+
+@{
+    ViewData["Title"] = "Crear Servidor Jei";
+    List<Juventud> juventud = ViewBag.Juventud as List<Juventud>;
+    List<Privilege> privileges = ViewBag.Privilege as List<Privilege>;
+}
+
+<h1>Crear Nuevo Servidor Juvenil</h1>
+<span>@ViewBag.Error</span>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form id="Form" asp-action="Create" onsubmit="CreateRecord(event)">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Campo de Membresía -->
+            <div class="form-group">
+                <label asp-for="IdJuventud" class="control-label">Juventud</label>
+                <select class="select2 form-select" name="IdJuventud" id="IdJuventud">
+                    <option selected value="">Seleccionar</option>
+                    @foreach (var item in juventud!)
+                    {
+                        <option value="@item.Id">@item.Name @item.LastName</option>
+                    }
+                </select>
+                <span asp-validation-for="IdJuventud" class="text-danger"></span>
+            </div>
+
+            <!-- Nuevos campos de texto readonly -->
+
+            <div class="form-group">
+                <label for="Birthdate" class="control-label">Fecha de Nacimiento</label>
+                <input type="text" id="Birthdate" class="form-control" readonly />
+            </div>
+
+            <div class="form-group">
+                <label for="Age" class="control-label">Edad</label>
+                <input type="text" id="Age" class="form-control" readonly />
+            </div>
+
+            <div class="form-group">
+                <label for="Gender" class="control-label">Género</label>
+                <input type="text" id="Gender" class="form-control" readonly />
+            </div>
+
+            <div class="form-group">
+                <label for="Phone" class="control-label">Teléfono</label>
+                <input type="text" id="Phone" class="form-control" readonly />
+            </div>
+
+            <div class="form-group">
+                <label for="CivilStatus" class="control-label">Estado Civil</label>
+                <input type="text" id="CivilStatus" class="form-control" readonly />
+            </div>
+
+            <div class="form-group">
+                <label for="Profession" class="control-label">Profesión u Oficio</label>
+                <input type="text" id="Profession" class="form-control" readonly />
+            </div>
+
+            <div class="form-group">
+                <label for="WaterBaptism" class="control-label">Bautismo en Agua</label>
+                <input type="text" id="WaterBaptism" class="form-control" readonly />
+            </div>
+
+            <div class="form-group">
+                <label for="SpiritBaptism" class="control-label">Bautismo por el Espíritu Santo</label>
+                <input type="text" id="SpiritBaptism" class="form-control" readonly />
+            </div>
+
+            <br />
+            <div>
+                <img id="imagenPreview" src="" alt="Vista previa de la imagen" style="max-width: 100%; max-height: 200px;" />
+            </div>
+            <br />
+
+            <!-- Campo de Privilegio -->
+            <div class="form-group">
+                <label asp-for="IdPrivilege" class="control-label"></label>
+                <select class="select2 form-select" name="IdPrivilege" id="IdPrivilege">
+                    <option selected value="">Seleccionar</option>
+                    @foreach (var item in privileges!)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="IdPrivilege" class="text-danger"></span>
+            </div>
+
+            <!-- Campo de Estado -->
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <select class="form-select" name="Status">
+                    <option value="">Seleccionar</option>
+                    <option selected value="1">Activo</option>
+                    <option value="2">Inactivo</option>
+                </select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+
+            <!-- Botones de acción -->
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Crear Servidor Jei" class="btn btn-primary" /> |
+                <a class="btn btn-outline-secondary" asp-action="Index">Regresar a La Lista</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        $(document).ready(function () {
+            // Inicializar select2 para los selects de Membership y Privilege
+            $('#IdJuventud').select2();
+            $('#IdPrivilege').select2();
+
+            // Automatizar el autocompletado de la información de membresía
+            $('#IdJuventud').on('change', function () {
+                var juventudId = $(this).val();
+
+                if (juventudId) {
+                    $.ajax({
+                        url: '@Url.Action("GetJuventudDetails", "ServerJei")',
+                        type: 'GET',
+                        data: { id: juventudId },
+                        success: function (data) {
+                            if (data.error) {
+                                Swal.fire({
+                                    title: 'Error',
+                                    text: data.error,
+                                    icon: 'error',
+                                    confirmButtonText: 'Aceptar'
+                                });
+                            } else {
+                                $('#Birthdate').val(data.birthdate);
+                                $('#Age').val(data.age);
+                                $('#Gender').val(data.gender);
+                                $('#Phone').val(data.phone);
+                                $('#CivilStatus').val(data.civilStatus);
+                                $('#Profession').val(data.profession);
+                                $('#WaterBaptism').val(data.waterBaptism);
+                                $('#SpiritBaptism').val(data.spiritBaptism);
+
+                                // Actualizar la imagen en la vista previa
+                                $('#imagenPreview').attr('src', 'data:image/jpeg;base64,' + data.photo);
+                            }
+                        },
+                        error: function () {
+                            Swal.fire({
+                                title: 'Error',
+                                text: 'Error al obtener los detalles del miembro.',
+                                icon: 'error',
+                                confirmButtonText: 'Aceptar'
+                            });
+                        }
+                    });
+                } else {
+                    // Limpiar los campos si no se selecciona ningún miembro
+                    $('#Birthdate').val('');
+                    $('#Age').val('');
+                    $('#Gender').val('');
+                    $('#Phone').val('');
+                    $('#CivilStatus').val('');
+                    $('#Profession').val('');
+                    $('#WaterBaptism').val('');
+                    $('#SpiritBaptism').val('');
+                    $('#imagenPreview').attr('src', ''); // Limpiar la imagen
+                }
+            });
+
+            // Función para mostrar alertas de error con SweetAlert2
+            function showErrorAlert(message) {
+                Swal.fire({
+                    title: 'Error',
+                    text: message,
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
+            }
+
+            // Mostrar error de ViewBag.Error si es necesario
+            @if (!string.IsNullOrEmpty(ViewBag.Error))
+            {
+                @:showErrorAlert('@ViewBag.Error');
+            }
+
+            // Alerta con SweetAlert2 al crear registro
+            window.CreateRecord = function(e) {
+                e.preventDefault();
+                const form = document.getElementById('Form');
+
+                // Si todos los campos son válidos, muestra la alerta de confirmación
+                Swal.fire({
+                    title: '¿Guardar Nuevo Registro?',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Sí, Guardar Registro',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            }
+        });
+    </script>
+}
