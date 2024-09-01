@@ -56,7 +56,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.ServerJei___Controller
         // Metod que extrae por Id y devolver a la vista en foramto Json
         [Authorize(Roles = "Desarrollador")]
         [HttpGet]
-        public async Task<IActionResult> GetMembershipDetails(int id)
+        public async Task<IActionResult> GetJuventudDetails(int id)
         {
             var juventud = await juventudBL.GetByIdAsync(id);
             if (juventud == null)
