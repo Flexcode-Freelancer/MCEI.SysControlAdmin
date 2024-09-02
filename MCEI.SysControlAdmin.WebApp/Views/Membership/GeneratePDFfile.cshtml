@@ -1,0 +1,59 @@
+﻿@model MCEI.SysControlAdmin.EN.Membership___EN.Membership
+
+@{
+    Layout = null;
+}
+
+<h1>Ficha Oficial Membresia</h1>
+<h2>Misión Cristiana Elim Izalco</h2>
+<h3>Dirección: Lotificacion San Francisco Psje c Casa 5 Pol 6 Izalco </h3>
+<h3>Teléfono: 7435-4408</h3>
+<h3>Celular: 24454322</h3>
+<h3>Correo: elimizalco@gmail.com</h3>
+
+<h2>Información Personal</h2>
+<p><strong>Nombre:</strong> @Model.Name</p>
+<p><strong>Apellido:</strong> @Model.LastName</p>
+<p><strong>Dui:</strong> @Model.Dui</p>
+<p><strong>Fecha de Nacimiento:</strong> @Model.DateOfBirth.ToString("dd/MM/yyyy")</p>
+<p><strong>Edad:</strong> @Model.Age</p>
+<p><strong>Género:</strong> @Model.Gender</p>
+<p><strong>Estado Civil:</strong> @Model.CivilStatus</p>
+<p><strong>Teléfono:</strong> @Model.Phone</p>
+<p><strong>Dirección de Residencia:</strong> @Model.Address</p>
+<p><strong>Profesión u Oficio:</strong> @Model.ProfessionOrStudy!.Name</p>
+<p><strong>Lugar de Trabajo o Estudio:</strong> @Model.PlaceOfWorkOrStudy</p>
+<p><strong>Teléfono de Trabajo o Estudio:</strong> @Model.WorkOrStudyPhone</p>
+
+@if (Model.ImageData != null)
+{
+    <p><strong>Fotografía:</strong></p>
+    <img src="data:image/png;base64,@Convert.ToBase64String(Model.ImageData!)" alt="Fotografía" />
+}
+
+<h2>Información Complementaria</h2>
+<p><strong>Fecha de Conversión:</strong> @Model.ConversionDate.ToString("dd/MM/yyyy")</p>
+<p><strong>Lugar de Conversión:</strong> @Model.PlaceOfConversion</p>
+<p><strong>Bautismo en Agua:</strong> @Model.WaterBaptism</p>
+<p><strong>Bautismo por el Espíritu Santo:</strong> @Model.BaptismOfTheHolySpirit</p>
+<p><strong>Nombre del Pastor:</strong> @Model.PastorsName</p>
+<p><strong>Nombre del Supervisor:</strong> @Model.SupervisorsName</p>
+<p><strong>Nombre del Líder:</strong> @Model.LeadersName</p>
+<p><strong>Tiempo de Asistir:</strong> @Model.TimeToGather</p>
+<p><strong>Zona:</strong> @Model.Zone</p>
+<p><strong>Distrito:</strong> @Model.District</p>
+<p><strong>Sector:</strong> @Model.Sector</p>
+<p><strong>Célula:</strong> @Model.Cell</p>
+@if(Model.Status == 1)
+{
+    <p><strong>Estatus:</strong> Activo</p>
+}
+else if(Model.Status == 2)
+{
+    <p><strong>Estatus:</strong> Inactivo</p>
+}
+else
+{
+    <p><strong>Estatus:</strong> Sin Designar</p>
+}
+<p><strong>Comentarios u Observaciones:</strong> @Model.CommentsOrObservations</p>
