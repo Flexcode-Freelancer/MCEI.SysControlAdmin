@@ -111,10 +111,21 @@ namespace MCEI.SysControlAdmin.DAL.Server___DAL
             var serverDB = new Server();
             using (var dbContext = new ContextDB())
             {
-                serverDB = await dbContext.Server.FirstOrDefaultAsync(c => c.Id == server.Id);
+                serverDB = await dbContext.Server.Include(m => m.Membership).Include(m => m.Privilege).FirstOrDefaultAsync(c => c.Id == server.Id);
             }
             return serverDB!;
         }
+
+        // ******** Comunmente el metodo es asi, pero se cambio debido a la creacion de reporte y acceder a datos de Membership ******
+        //public static async Task<Server> GetByIdAsync(Server server)
+        //{
+        //    var serverDB = new Server();
+        //    using (var dbContext = new ContextDB())
+        //    {
+        //        serverDB = await dbContext.Server.FirstOrDefaultAsync(c => c.Id == server.Id);
+        //    }
+        //    return serverDB!;
+        //}
         #endregion
 
         #region METODO PARA BUSCAR REGISTROS MEDIANTE EL USO DE FILTROS
