@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NuGet.DependencyResolver;
+using Rotativa.AspNetCore;
 
 
 #endregion
@@ -273,6 +274,19 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Server___Controller
                 serverDB.Privilege = await privilegeBL.GetByIdAsync(new Privilege { Id = serverDB.IdPrivilege });
                 return View(serverDB);
             }
+        }
+        #endregion
+
+        #region METODO PARA REPORTE
+        // Metodo Para Generar Ficha o Reporte En PDF
+        public async Task<ActionResult> GeneratePDFfile(int id)
+        {
+            var generatePDF = await serverBL.GetByIdAsync(new Server { Id = id });
+            string fileName = $"Ficha_Servidor_{generatePDF.Membership!.Name}_{generatePDF.Membership.LastName}_MCEI.pdf";
+            return new ViewAsPdf("GeneratePDFfile", generatePDF)
+            {
+                FileName = fileName,
+            };
         }
         #endregion
     }
