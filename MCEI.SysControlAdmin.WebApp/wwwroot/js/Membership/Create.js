@@ -179,37 +179,14 @@ function mostrarImagen() {
 function CreateRecord(e) {
     e.preventDefault();
     const form = document.getElementById('Form');
-    const inputs = document.querySelectorAll('.form-input');
-    const nameFields = ['Name', 'LastName', 'PastorsName', 'SupervisorsName', 'LeadersName', 'TimeToGather'];
-    const regex = /^[A-ZÑa-zñáéíóúÁÉÍÓÚ. ]+$/;
 
-    let isValid = true;
-
-    // Validar que los campos nameFields solo contengan letras, punto y espacios
-    nameFields.forEach((field) => {
-        const input = document.querySelector(`#${field}`);
-        if (!regex.test(input.value)) {
-            isValid = false;
-        }
-    });
-
-    // Si la validación falla, muestra una alerta advirtiendo al usuario
-    if (!isValid) {
-        Swal.fire({
-            title: '!Advertencia!',
-            text: 'Ciertos Campos Solo Deben Tener Letras, Revisa Tu Ficha',
-            icon: 'warning',
-            confirmButtonText: 'Aceptar'
-        });
-        return;
-    }
-
-    // Si todos los campos son válidos, muestra la alerta de confirmación
+    // Mostrar la alerta de confirmación
     Swal.fire({
-        title: '¿Guardar Nuevo Registro?',
+        title: 'Guardar Nuevo Registro?',
         icon: 'question',
         showCancelButton: true,
-        confirmButtonText: 'Sí, Guardar Registro'
+        confirmButtonText: 'Si, Guardar Registro',
+        cancelButtonText: 'No, Cancelar'
     }).then((result) => {
         if (result.isConfirmed) {
             form.submit();

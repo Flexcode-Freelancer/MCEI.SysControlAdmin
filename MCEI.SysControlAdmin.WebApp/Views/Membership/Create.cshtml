@@ -27,12 +27,12 @@
             <div class="form-group-row">
                 <div class="form-group">
                     <label asp-for="Name" class="control-label"></label>
-                    <input asp-for="Name" class="form-control" placeholder="Ingresar" />
+                    <input asp-for="Name" class="form-control" placeholder="Ingresar" id="Name" />
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="LastName" class="control-label"></label>
-                    <input asp-for="LastName" class="form-control" placeholder="Ingresar" />
+                    <input asp-for="LastName" class="form-control" placeholder="Ingresar" id="LastName"/>
                     <span asp-validation-for="LastName" class="text-danger"></span>
                 </div>
                 <div class="form-group">
@@ -156,17 +156,17 @@
             <div class="form-group-row">
                 <div class="form-group">
                     <label asp-for="PastorsName" class="control-label"></label>
-                    <input asp-for="PastorsName" class="form-control" placeholder="Ingresar" />
+                    <input asp-for="PastorsName" class="form-control" placeholder="Ingresar" id="PastorsName" />
                     <span asp-validation-for="PastorsName" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="SupervisorsName" class="control-label"></label>
-                    <input asp-for="SupervisorsName" class="form-control" placeholder="Ingresar" />
+                    <input asp-for="SupervisorsName" class="form-control" placeholder="Ingresar" id="SupervisorsName" />
                     <span asp-validation-for="SupervisorsName" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="LeadersName" class="control-label"></label>
-                    <input asp-for="LeadersName" class="form-control" placeholder="Ingresar" />
+                    <input asp-for="LeadersName" class="form-control" placeholder="Ingresar" id="LeadersName" />
                     <span asp-validation-for="LeadersName" class="text-danger"></span>
                 </div>
             </div>
@@ -184,7 +184,6 @@
                         <option value="" selected>Seleccionar</option>
                         <option value="1">Zona 1</option>
                         <option value="2">Zona 2</option>
-                        <option value="3">Zona 3</option>
                     </select>
                     <span asp-validation-for="Zone" class="text-danger"></span>
                 </div>
@@ -194,6 +193,7 @@
                         <option value="" selected>Seleccionar</option>
                         <option value="1">Distrito 1</option>
                         <option value="2">Distrito 2</option>
+                        <option value="3">Distrito 3</option>
                     </select>
                     <span asp-validation-for="District" class="text-danger"></span>
                 </div>
