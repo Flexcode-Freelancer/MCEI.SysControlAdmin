@@ -20,6 +20,7 @@ using MCEI.SysControlAdmin.EN.ServerJei___EN;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Rotativa.AspNetCore;
 
 
 #endregion
@@ -279,6 +280,19 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.ServerJei___Controller
                 serverJeiDB.Privilege = await privilegeBL.GetByIdAsync(new Privilege { Id = serverJeiDB.IdPrivilege });
                 return View(serverJeiDB);
             }
+        }
+        #endregion
+
+        #region METODO PARA REPORTE
+        // Metodo Para Generar Ficha o Reporte En PDF
+        public async Task<ActionResult> GeneratePDFfile(int id)
+        {
+            var generatePDF = await serverJeiBL.GetByIdAsync(new ServerJei { Id = id });
+            string fileName = $"Ficha_ServidorJEI_{generatePDF.Juventud!.Name}_{generatePDF.Juventud!.LastName}_MCEI.pdf";
+            return new ViewAsPdf("GeneratePDFfile", generatePDF)
+            {
+                FileName = fileName,
+            };
         }
         #endregion
     }
