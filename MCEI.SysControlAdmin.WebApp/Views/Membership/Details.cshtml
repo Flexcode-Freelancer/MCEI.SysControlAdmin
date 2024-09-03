@@ -140,60 +140,18 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 
+    <script src="/js/Membership/Details.js"></script>
     <script>
-        // Función para mostrar alertas de error utilizando SweetAlert2
-        function showErrorAlert(message) {
-            Swal.fire({
-                title: 'Error',
-                text: message,
-                icon: 'error'
-            });
+        // Variables pasadas desde Razor al script JS
+        const ageValue = '@Html.DisplayFor(model => model.Age)';
+        const nameValue = '@Html.DisplayFor(model => model.Name)';
+        const lastNameValue = '@Html.DisplayFor(model => model.LastName)';
+        const modifyUrl = '@Url.Action("Edit", "Membership", new { id = Model.Id })';
+
+        // Mostrar alerta si hay un error
+        @if (!string.IsNullOrEmpty(ViewBag.Error))
+        {
+            @:showErrorAlert('@ViewBag.Error');
         }
-
-        // Evento que se ejecuta una vez que el DOM ha sido completamente cargado
-        document.addEventListener("DOMContentLoaded", function () {
-
-            // Generar el código de barras basado en el valor de Dui
-            var duiElement = document.getElementById("Dui"); // Selecciona el elemento <dd> con el id "dui-field"
-            var duiValue = duiElement.innerText; // Obtén el valor de Dui del elemento
-            var barcodeSvg = document.getElementById("barcode"); // Selecciona el elemento <svg> con el id "barcode"
-            JsBarcode(barcodeSvg, duiValue); // Genera el código de barras basado en el valor de Dui
-
-            // Mostrar alerta de ViewBag.Error si es necesario
-            @if (!string.IsNullOrEmpty(ViewBag.Error))
-            {
-                @:showErrorAlert('@ViewBag.Error');
-            }
-
-            // Agregar el evento de clic al botón de modificar
-            document.getElementById('modifyButton').addEventListener('click', function (event) {
-                event.preventDefault(); // Prevenir la acción predeterminada del enlace
-                Swal.fire({
-                    title: '¿Ir a La Vista Modificar?',
-                    text: "¿Estás seguro de que quieres ir a la vista Modificar?",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: 'Sí, Ir a La Vista Modificar',
-                    cancelButtonText: 'Cancelar'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = '@Url.Action("Edit", "Membership", new { id = Model.Id })';
-                    }
-                });
-            });
-
-            // Verificar si el usuario es menor de edad y mostrar mensaje
-            const age = @Html.DisplayFor(model => model.Age);
-            const name = '@Html.DisplayFor(model => model.Name)';
-            const lastName = '@Html.DisplayFor(model => model.LastName)';
-            const minorSpan = document.getElementById('minor'); // Obtenemos el elemento span con ID "minor".
-
-            if (age <= 17) {
-                const message = `${name} ${lastName} Actualmente Es Menor De Edad`; // Concatenamos el nombre, apellido y el mensaje requerido.
-                minorSpan.textContent = message; // Establecemos el texto del span con el mensaje.
-            } else {
-                minorSpan.textContent = ''; // Si la edad es mayor o igual a 18, vaciamos el texto del span.
-            }
-        });
     </script>
 }
