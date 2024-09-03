@@ -143,62 +143,17 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 
+    <script src="/js/Membership/Delete.js"></script>
     <script>
-        // Función para mostrar una alerta de error utilizando SweetAlert2
-        function showErrorAlert(message) {
-            Swal.fire({
-                title: 'Error',
-                text: message,
-                icon: 'error'
-            });
-        }
+        // Variables pasadas desde Razor al script JS
+        const ageValue = '@Html.DisplayFor(model => model.Age)';
+        const nameValue = '@Html.DisplayFor(model => model.Name)';
+        const lastNameValue = '@Html.DisplayFor(model => model.LastName)';
 
-        // Evento que se ejecuta una vez que el DOM ha sido completamente cargado
-        document.addEventListener("DOMContentLoaded", function () {
-
-            // Mostrar alerta de ViewBag.Error si es necesario
-            @if (!string.IsNullOrEmpty(ViewBag.Error))
-            {
-                @:showErrorAlert('@ViewBag.Error');
-            }
-
-            // Generar el código de barras basado en el valor de Dui
-            var duiElement = document.getElementById("Dui"); // Selecciona el elemento <dd> con el id "dui-field"
-            var duiValue = duiElement.innerText; // Obtén el valor de Dui del elemento
-            var barcodeSvg = document.getElementById("barcode"); // Selecciona el elemento <svg> con el id "barcode"
-            JsBarcode(barcodeSvg, duiValue); // Genera el código de barras basado en el valor de Dui
-
-            // Verificar si el usuario es menor de edad y mostrar mensaje
-            const age = @Html.DisplayFor(model => model.Age);
-            const name = '@Html.DisplayFor(model => model.Name)';
-            const lastName = '@Html.DisplayFor(model => model.LastName)';
-            const minorSpan = document.getElementById('minor'); // Obtenemos el elemento span con ID "minor".
-
-            if (age <= 17) {
-                const message = `${name} ${lastName} Actualmente Es Menor De Edad`; // Concatenamos el nombre, apellido y el mensaje requerido.
-                minorSpan.textContent = message; // Establecemos el texto del span con el mensaje.
-            } else {
-                minorSpan.textContent = ''; // Si la edad es mayor o igual a 18, vaciamos el texto del span.
-            }
-        });
-
-        // Función para mostrar una alerta de confirmación antes de eliminar un registro
-        function CreateRecord(e) {
-            e.preventDefault();
-            const form = document.getElementById('Form');
-
-            Swal.fire({
-                title: '¿Eliminar Este Registro?',
-                text: '¿Estás seguro de eliminar el siguiente registro? Recuerda que no puedes revertir los cambios.',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Sí, Eliminar Registro',
-                cancelButtonText: 'Cancelar'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    form.submit();
-                }
-            });
+        // Mostrar alerta si hay un error
+        @if (!string.IsNullOrEmpty(ViewBag.Error))
+        {
+            @:showErrorAlert('@ViewBag.Error');
         }
     </script>
 }
