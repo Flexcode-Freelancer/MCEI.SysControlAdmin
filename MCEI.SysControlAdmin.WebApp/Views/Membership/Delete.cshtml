@@ -7,219 +7,142 @@
 <h1>Eliminar Membresia Existente</h1>
 <p class="alert alert-danger">¿Estas Seguro De Eliminar el Siguiente Registro? Recuerda No Puedes Revertir Los Cambios.</p>
 <span id="minor"></span>
-<br />
 <hr />
-<div>
-    <h2>Información Personal</h2>
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Dui)
-        </dt>
-        <dd class="col-sm-10" id="dui-field">
-            @Html.DisplayFor(model => model.Dui)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DateOfBirth)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DateOfBirth)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Age)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Age) Años
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Gender)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Gender)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CivilStatus)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CivilStatus)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Address)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.IdProfessionOrStudy)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ProfessionOrStudy!.Name)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PlaceOfWorkOrStudy)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PlaceOfWorkOrStudy)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.WorkOrStudyPhone)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.WorkOrStudyPhone)
-        </dd>
-        <div>
-            <br />
+<div class="container">
+    <div class="row">
+        <!-- Información Personal -->
+        <div class="col-md-6">
+            <h2>Información Personal</h2>
+            <dl class="row">
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Name)</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.Name)</dd>
+
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.LastName)</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.LastName)</dd>
+
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Dui)</dt>
+                <dd class="col-sm-8" id="Dui">@Html.DisplayFor(model => model.Dui)</dd>
+
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.DateOfBirth)</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.DateOfBirth)</dd>
+
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Age)</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.Age) Años</dd>
+
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Gender)</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.Gender)</dd>
+
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.CivilStatus)</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.CivilStatus)</dd>
+
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Phone)</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.Phone)</dd>
+
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Address)</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.Address)</dd>
+
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.IdProfessionOrStudy)</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.ProfessionOrStudy!.Name)</dd>
+
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.PlaceOfWorkOrStudy)</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.PlaceOfWorkOrStudy)</dd>
+
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.WorkOrStudyPhone)</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.WorkOrStudyPhone)</dd>
+            </dl>
+        </div>
+
+        <!-- Información Adicional -->
+        <div class="col-md-6">
             <h2>Información Adicional</h2>
             <dl class="row">
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.ConversionDate)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.ConversionDate)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.PlaceOfConversion)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.PlaceOfConversion)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.WaterBaptism)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.WaterBaptism)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.BaptismOfTheHolySpirit)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.BaptismOfTheHolySpirit)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.PastorsName)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.PastorsName)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.SupervisorsName)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.SupervisorsName)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.LeadersName)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.LeadersName)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.TimeToGather)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.TimeToGather)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Zone)
-                </dt>
-                <dd class="col-sm-10">
-                    # @Html.DisplayFor(model => model.Zone)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.District)
-                </dt>
-                <dd class="col-sm-10">
-                    # @Html.DisplayFor(model => model.District)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Sector)
-                </dt>
-                <dd class="col-sm-10">
-                    # @Html.DisplayFor(model => model.Sector)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Cell)
-                </dt>
-                <dd class="col-sm-10">
-                    # @Html.DisplayFor(model => model.Cell)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Status)
-                </dt>
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.ConversionDate)</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.ConversionDate)</dd>
+
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.PlaceOfConversion)</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.PlaceOfConversion)</dd>
+
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.WaterBaptism)</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.WaterBaptism)</dd>
+
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.BaptismOfTheHolySpirit)</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.BaptismOfTheHolySpirit)</dd>
+
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.PastorsName)</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.PastorsName)</dd>
+
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.SupervisorsName)</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.SupervisorsName)</dd>
+
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.LeadersName)</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.LeadersName)</dd>
+
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.TimeToGather)</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.TimeToGather)</dd>
+
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Zone)</dt>
+                <dd class="col-sm-8"># @Html.DisplayFor(model => model.Zone)</dd>
+
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.District)</dt>
+                <dd class="col-sm-8"># @Html.DisplayFor(model => model.District)</dd>
+
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Sector)</dt>
+                <dd class="col-sm-8"># @Html.DisplayFor(model => model.Sector)</dd>
+
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Cell)</dt>
+                <dd class="col-sm-8"># @Html.DisplayFor(model => model.Cell)</dd>
+
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Status)</dt>
                 @if (Model.Status == 1)
                 {
-                    <dd class="col-sm-10">
-                        Activo
-                    </dd>
+                    <dd class="col-sm-8">Activo</dd>
                 }
                 else if (Model.Status == 2)
                 {
-                    <dd class="col-sm-10">
-                        Inactivo
-                    </dd>
+                    <dd class="col-sm-8">Inactivo</dd>
                 }
-                else
-                {
-                    <dd> </dd>
-                }
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.CommentsOrObservations)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.CommentsOrObservations)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.DateCreated)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.DateCreated)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.DateModification)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.DateModification)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.ImageData)
-                </dt>
-                <dd class="col-sm-10">
-                    <img id="imagenPreview" src="@(ViewBag.ImageUrl != null ? "data:image/jpeg;base64," + ViewBag.ImageUrl : "")" alt="Vista previa de la imagen" style="max-width: 100%; max-height: 200px;" />
-                </dd>
-                <dt class="col-sm-2">
-                    Codigo de Barras
-                </dt>
-                <dd class="col-sm-10">
-                    <svg id="barcode"></svg>
-                </dd>
+
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.CommentsOrObservations)</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.CommentsOrObservations)</dd>
+
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.DateCreated)</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.DateCreated)</dd>
+
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.DateModification)</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.DateModification)</dd>
             </dl>
         </div>
-    </dl>
-    
-    <form id="Form" asp-action="Delete" onsubmit="CreateRecord(event)">
-        <input type="submit" value="Eliminar Membresia" class="btn btn-danger" /> |
-        <a class="btn btn-outline-secondary" asp-action="Index">Regresar a La Lista</a>
-    </form>
+    </div>
+
+    <!-- Imagen y Código de Barras -->
+    <h2>Información Complementaria</h2>
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <dt!>
+                @Html.DisplayNameFor(model => model.ImageData)</dt>
+                <dd>
+                    <img id="imagenPreview" src="@(ViewBag.ImageUrl != null ? "data:image/jpeg;base64," + ViewBag.ImageUrl : "")" alt="Vista previa de la imagen" style="max-width: 100%; max-height: 200px;" />
+                </dd>
+        </div>
+        <div class="col-md-4">
+            <dt>Código de Barras</dt>
+            <dd>
+                <svg id="barcode"></svg>
+            </dd>
+        </div>
+    </div>
 </div>
+<br />
+<form id="Form" asp-action="Delete" onsubmit="CreateRecord(event)">
+    <input type="submit" value="Eliminar Membresia" class="btn btn-danger" /> |
+    <a class="btn btn-outline-secondary" asp-action="Index">Regresar a La Lista</a>
+</form>
 
 @section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
     <script>
         // Función para mostrar una alerta de error utilizando SweetAlert2
         function showErrorAlert(message) {
@@ -240,7 +163,7 @@
             }
 
             // Generar el código de barras basado en el valor de Dui
-            var duiElement = document.getElementById("dui-field"); // Selecciona el elemento <dd> con el id "dui-field"
+            var duiElement = document.getElementById("Dui"); // Selecciona el elemento <dd> con el id "dui-field"
             var duiValue = duiElement.innerText; // Obtén el valor de Dui del elemento
             var barcodeSvg = document.getElementById("barcode"); // Selecciona el elemento <svg> con el id "barcode"
             JsBarcode(barcodeSvg, duiValue); // Genera el código de barras basado en el valor de Dui
