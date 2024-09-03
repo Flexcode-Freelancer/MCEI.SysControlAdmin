@@ -7,6 +7,7 @@ using MCEI.SysControlAdmin.EN.ProfessionOrStudy___EN;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Rotativa.AspNetCore;
 
 
 #endregion
@@ -228,6 +229,19 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Juventud___Controller
                     juventudBD.ProfessionOrStudy = await professionOrStudyBL.GetByIdAsync(new ProfessionOrStudy { Id = juventudBD.IdProfessionOrStudy });
                 return View(juventudBD);
             }
+        }
+        #endregion
+
+        #region METODO PARA REPORTE
+        // Metodo Para Generar Ficha o Reporte En PDF
+        public async Task<ActionResult> GeneratePDFfile(int id)
+        {
+            var generatePDF = await juventudBL.GetByIdAsync(new Juventud { Id  = id });
+            string fileName = $"FichaJEI_{generatePDF.Name}_{generatePDF.LastName}_MCEI.pdf";
+            return new ViewAsPdf("GeneratePDFfile", generatePDF)
+            {
+                FileName = fileName,
+            };
         }
         #endregion
     }
