@@ -36,7 +36,7 @@ new DataTable('#ResultData', {
         search: 'Busqueda Rapida :',
         searchPlaceholder: 'Ingresar',
         lengthMenu: '_MENU_ Mostrar',
-        emptyTable: 'No Hay Datos Que Coincidan Con Su Criterio De Búsqueda.',
+        emptyTable: 'No Hay Datos Que Coincidan Con Su Criterio De Busqueda.',
         zeroRecords: 'No Existen Registros Segun La Busqueda',
         processing: 'Procesando...',
     }
@@ -53,21 +53,3 @@ const Toast = Swal.mixin({
         toast.addEventListener('mouseleave', Swal.resumeTimer);
     }
 });
-
-// Comprobar si hay mensajes de éxito y mostrar notificaciones del sistema
-const successMessages = {
-    Creado: '@TempData["SuccessMessageCreate"]',
-    Modificado: '@TempData["SuccessMessageUpdate"]',
-    Eliminado: '@TempData["SuccessMessageDelete"]'
-};
-
-for (const messageType in successMessages) {
-    const message = successMessages[messageType];
-    if (message) {
-        Toast.fire({
-            icon: "success",
-            title: `¡${messageType} Exitosamente!`,
-            text: message
-        });
-    }
-}
