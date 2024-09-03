@@ -110,10 +110,20 @@ namespace MCEI.SysControlAdmin.DAL.ServerJei___DAL
             var serverJeiDB = new ServerJei();
             using (var dbContext = new ContextDB())
             {
-                serverJeiDB = await dbContext.ServerJei.FirstOrDefaultAsync(c => c.Id == serverJei.Id);
+                serverJeiDB = await dbContext.ServerJei.Include(m => m.Juventud).Include(m => m.Privilege).FirstOrDefaultAsync(c => c.Id == serverJei.Id);
             }
             return serverJeiDB!;
         }
+        // ******** Comunmente el metodo es asi, pero se cambio debido a la creacion de reporte y acceder a datos de Juventud ******
+        //public static async Task<ServerJei> GetByIdAsync(ServerJei serverJei)
+        //{
+        //    var serverJeiDB = new ServerJei();
+        //    using (var dbContext = new ContextDB())
+        //    {
+        //        serverJeiDB = await dbContext.ServerJei.FirstOrDefaultAsync(c => c.Id == serverJei.Id);
+        //    }
+        //    return serverJeiDB!;
+        //}
         #endregion
 
         #region METODO PARA BUSCAR REGISTROS MEDIANTE EL USO DE FILTROS
