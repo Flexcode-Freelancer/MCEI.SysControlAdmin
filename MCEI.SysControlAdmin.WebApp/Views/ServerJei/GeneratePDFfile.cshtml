@@ -1,0 +1,46 @@
+﻿@model MCEI.SysControlAdmin.EN.ServerJei___EN.ServerJei
+
+@{
+    Layout = null;
+}
+
+<h1>Ficha Oficial Membresia</h1>
+<h2>Misión Cristiana Elim Izalco</h2>
+<h3>Dirección: Lotificacion San Francisco Psje c Casa 5 Pol 6 Izalco </h3>
+<h3>Teléfono: 7435-4408</h3>
+<h3>Celular: 24454322</h3>
+<h3>Correo: elimizalco@gmail.com</h3>
+
+<h2>Información Personal</h2>
+<p><strong>Nombre:</strong> @Model.Juventud!.Name</p>
+<p><strong>Apellido:</strong> @Model.Juventud!.LastName</p>
+<p><strong>Fecha de Nacimiento:</strong> @Model.Juventud!.DateOfBirth.ToString("dd/MM/yyyy")</p>
+<p><strong>Edad:</strong> @Model.Juventud!.Age Años</p>
+<p><strong>Género:</strong> @Model.Juventud!.Gender</p>
+<p><strong>Estado Civil:</strong> @Model.Juventud!.CivilStatus</p>
+<p><strong>Teléfono:</strong> @Model.Juventud!.Phone</p>
+<p><strong>Bautismo En Agua:</strong> @Model.Juventud!.WaterBaptism</p>
+<p><strong>Bautizmo Por El Espiritu Santo:</strong> @Model.Juventud!.BaptismOfTheHolySpirit</p>
+
+@if (Model.Juventud!.ImageData != null)
+{
+    <p><strong>Fotografía:</strong></p>
+    <img src="data:image/png;base64,@Convert.ToBase64String(Model.Juventud!.ImageData!)" alt="Fotografía" />
+}
+
+<h2>Información Complementaria</h2>
+<p><strong>Privilegio:</strong> @Model.Privilege!.Name</p>
+@if (Model.Status == 1)
+{
+    <p><strong>Estatus:</strong> Activo</p>
+}
+else if (Model.Status == 2)
+{
+    <p><strong>Estatus:</strong> Inactivo</p>
+}
+else
+{
+    <p><strong>Estatus:</strong> Sin Designar</p>
+}
+<p><strong>Fecha de Cración:</strong> @Model.DateCreated</p>
+<p><strong>Fecha de Modificación:</strong> @Model.DateModification</p>
