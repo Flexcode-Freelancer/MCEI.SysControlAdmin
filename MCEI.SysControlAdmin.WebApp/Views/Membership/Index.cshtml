@@ -125,6 +125,9 @@
 </table>
 
 @section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
     <script src="/js/Membership/Index.js"></script>
     <script>
         // Comprobar si hay mensajes de éxito y mostrar notificaciones del sistema
