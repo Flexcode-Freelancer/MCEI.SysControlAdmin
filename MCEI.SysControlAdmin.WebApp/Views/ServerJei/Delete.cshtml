@@ -7,109 +7,95 @@
 <h1>Eliminar Servidor Juvenil Existente</h1>
 <p class="alert alert-danger">¿Estas Seguro De Eliminar el Siguiente Registro? Recuerda No Puedes Revertir Los Cambios.</p>
 <hr />
-<div>
-    <h2>Inforamcion Personal</h2>
-    <br />
-    <dl class="row">
-        <!-- Campo oculto para IdMembership -->
-        <input type="hidden" id="IdJuventud" value="@Model.IdJuventud" />
-        <dt class="col-sm-2">
-            Nombre
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Juventud!.Name)
-        </dd>
-        <dt class="col-sm-2">
-            Apellido
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Juventud!.LastName)
-        </dd>
-        <dt class="col-sm-2">
-            Fecha de Nacimiento
-        </dt>
-        <dd class="col-sm-10" id="Birthdate"></dd>
-        <dt class="col-sm-2">
-            Edad
-        </dt>
-        <dd class="col-sm-10" id="Age"> Años</dd>
-        <dt class="col-sm-2">
-            Genero
-        </dt>
-        <dd class="col-sm-10" id="Gender"></dd>
-        <dt class="col-sm-2">
-            Telefono
-        </dt>
-        <dd class="col-sm-10" id="Phone"></dd>
-        <dt class="col-sm-2">
-            Estado Civil
-        </dt>
-        <dd class="col-sm-10" id="CivilStatus"></dd>
-        <dt class="col-sm-2">
-            Profesión u Oficio
-        </dt>
-        <dd class="col-sm-10" id="Profession"></dd>
-        <dt class="col-sm-2">
-            Bautismo en Agua
-        </dt>
-        <dd class="col-sm-10" id="WaterBaptism"></dd>
-        <dt class="col-sm-2">
-            Bautismo Por El Espiritu Santo
-        </dt>
-        <dd class="col-sm-10" id="SpiritBaptism"></dd>
-    </dl>
-    <br />
-    <div>
-        <img id="imagenPreview" src="" alt="Vista previa de la imagen" style="max-width: 100%; max-height: 200px;" />
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Inforamcion Personal</h2>
+            <dl class="row">
+                <!-- Campo oculto para IdMembership -->
+                <input type="hidden" id="IdJuventud" value="@Model.IdJuventud" />
+                <dt class="col-sm-4">Nombre</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.Juventud!.Name)</dd>
+
+                <dt class="col-sm-4">Apellido</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.Juventud!.LastName)</dd>
+
+                <dt class="col-sm-4">Fecha de Nacimiento</dt>
+                <dd class="col-sm-8" id="Birthdate"></dd>
+
+                <dt class="col-sm-4">Edad</dt>
+                <dd class="col-sm-8" id="Age"> Años</dd>
+
+                <dt class="col-sm-4">Genero</dt>
+                <dd class="col-sm-8" id="Gender"></dd>
+
+                <dt class="col-sm-4">Telefono</dt>
+                <dd class="col-sm-8" id="Phone"></dd>
+
+                <dt class="col-sm-4">Estado Civil</dt>
+                <dd class="col-sm-8" id="CivilStatus"></dd>
+
+                <dt class="col-sm-4">Profesión u Oficio</dt>
+                <dd class="col-sm-8" id="Profession"></dd>
+
+                <dt class="col-sm-4">Bautismo en Agua</dt>
+                <dd class="col-sm-8" id="WaterBaptism"></dd>
+
+                <dt class="col-sm-4">Bautismo Por El Espiritu Santo</dt>
+                <dd class="col-sm-8" id="SpiritBaptism"></dd>
+            </dl>
+            <div>
+                <img id="imagenPreview" src="" alt="Vista previa de la imagen" style="max-width: 100%; max-height: 200px;" />
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h2>Inforamcion Adicional</h2>
+            <dl class="row">
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.IdPrivilege)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.Privilege!.Name)
+                </dd>
+
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.Status)
+                </dt>
+                @if (Model.Status == 1)
+                {
+                    <dd class="col-sm-8">
+                        Activo
+                    </dd>
+                }
+                else if (Model.Status == 2)
+                {
+                    <dd class="col-sm-8">
+                        Inactivo
+                    </dd>
+                }
+
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.DateCreated)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.DateCreated)
+                </dd>
+
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.DateModification)
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => model.DateModification)
+                </dd>
+            </dl>
+        </div>
     </div>
-    <br />
-    <h2>Inforamcion Adicional</h2>
-    <br />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.IdPrivilege)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Privilege!.Name)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        @if (Model.Status == 1)
-        {
-            <dd class="col-sm-10">
-                Activo
-            </dd>
-        }
-        else if (Model.Status == 2)
-        {
-            <dd class="col-sm-10">
-                Inactivo
-            </dd>
-        }
-        else
-        {
-            <dd> </dd>
-        }
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DateCreated)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DateCreated)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DateModification)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DateModification)
-        </dd>
-    </dl>
-    <br />
-    <form id="Form" asp-action="Delete" onsubmit="CreateRecord(event)">
-        <input type="submit" value="Eliminar Servidor Jei" class="btn btn-danger" /> |
-        <a class="btn btn-outline-secondary" asp-action="Index">Regresar a La Lista</a>
-    </form>
 </div>
+<br />
+<form id="Form" asp-action="Delete" onsubmit="CreateRecord(event)">
+    <input type="submit" value="Eliminar Servidor Jei" class="btn btn-danger" /> |
+    <a class="btn btn-outline-secondary" asp-action="Index">Regresar a La Lista</a>
+</form>
 
 @section Scripts {
     <script>

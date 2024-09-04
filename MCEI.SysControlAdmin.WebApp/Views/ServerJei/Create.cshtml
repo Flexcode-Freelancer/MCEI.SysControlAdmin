@@ -8,100 +8,95 @@
     List<Privilege> privileges = ViewBag.Privilege as List<Privilege>;
 }
 
+@section Style {
+    <link href="/css/ServerJei/DesignCreateAndEdit.css" rel="stylesheet" />
+}
+
 <h1>Crear Nuevo Servidor Juvenil</h1>
 <span>@ViewBag.Error</span>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-12">
         <form id="Form" asp-action="Create" onsubmit="CreateRecord(event)">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-            <!-- Campo de Membresía -->
-            <div class="form-group">
-                <label asp-for="IdJuventud" class="control-label">Juventud</label>
-                <select class="select2 form-select" name="IdJuventud" id="IdJuventud">
-                    <option selected value="">Seleccionar</option>
-                    @foreach (var item in juventud!)
-                    {
-                        <option value="@item.Id">@item.Name @item.LastName</option>
-                    }
-                </select>
-                <span asp-validation-for="IdJuventud" class="text-danger"></span>
+            <div class="form-group-row">
+                <!-- Campo de Membresía -->
+                <div class="form-group">
+                    <label asp-for="IdJuventud" class="control-label">Juventud</label>
+                    <select class="select2 form-select" name="IdJuventud" id="IdJuventud">
+                        <option selected value="">Seleccionar</option>
+                        @foreach (var item in juventud!)
+                        {
+                            <option value="@item.Id">@item.Name @item.LastName</option>
+                        }
+                    </select>
+                    <span asp-validation-for="IdJuventud" class="text-danger"></span>
+                </div>
+                <!-- Nuevos campos de texto readonly -->
+                <div class="form-group">
+                    <label for="Birthdate" class="control-label">Fecha de Nacimiento</label>
+                    <input type="text" id="Birthdate" class="form-control" readonly />
+                </div>
+                <div class="form-group">
+                    <label for="Age" class="control-label">Edad</label>
+                    <input type="text" id="Age" class="form-control" readonly />
+                </div>
             </div>
-
-            <!-- Nuevos campos de texto readonly -->
-
-            <div class="form-group">
-                <label for="Birthdate" class="control-label">Fecha de Nacimiento</label>
-                <input type="text" id="Birthdate" class="form-control" readonly />
+            <div class="form-group-row">
+                <div class="form-group">
+                    <label for="Gender" class="control-label">Género</label>
+                    <input type="text" id="Gender" class="form-control" readonly />
+                </div>
+                <div class="form-group">
+                    <label for="Phone" class="control-label">Teléfono</label>
+                    <input type="text" id="Phone" class="form-control" readonly />
+                </div>
+                <div class="form-group">
+                    <label for="CivilStatus" class="control-label">Estado Civil</label>
+                    <input type="text" id="CivilStatus" class="form-control" readonly />
+                </div>
             </div>
-
-            <div class="form-group">
-                <label for="Age" class="control-label">Edad</label>
-                <input type="text" id="Age" class="form-control" readonly />
+            <div class="form-group-row">
+                <div class="form-group">
+                    <label for="Profession" class="control-label">Profesión u Oficio</label>
+                    <input type="text" id="Profession" class="form-control" readonly />
+                </div>
+                <div class="form-group">
+                    <label for="WaterBaptism" class="control-label">Bautismo en Agua</label>
+                    <input type="text" id="WaterBaptism" class="form-control" readonly />
+                </div>
+                <div class="form-group">
+                    <label for="SpiritBaptism" class="control-label">Bautismo por el Espíritu Santo</label>
+                    <input type="text" id="SpiritBaptism" class="form-control" readonly />
+                </div>
             </div>
-
-            <div class="form-group">
-                <label for="Gender" class="control-label">Género</label>
-                <input type="text" id="Gender" class="form-control" readonly />
-            </div>
-
-            <div class="form-group">
-                <label for="Phone" class="control-label">Teléfono</label>
-                <input type="text" id="Phone" class="form-control" readonly />
-            </div>
-
-            <div class="form-group">
-                <label for="CivilStatus" class="control-label">Estado Civil</label>
-                <input type="text" id="CivilStatus" class="form-control" readonly />
-            </div>
-
-            <div class="form-group">
-                <label for="Profession" class="control-label">Profesión u Oficio</label>
-                <input type="text" id="Profession" class="form-control" readonly />
-            </div>
-
-            <div class="form-group">
-                <label for="WaterBaptism" class="control-label">Bautismo en Agua</label>
-                <input type="text" id="WaterBaptism" class="form-control" readonly />
-            </div>
-
-            <div class="form-group">
-                <label for="SpiritBaptism" class="control-label">Bautismo por el Espíritu Santo</label>
-                <input type="text" id="SpiritBaptism" class="form-control" readonly />
-            </div>
-
             <br />
             <div>
                 <img id="imagenPreview" src="" alt="Vista previa de la imagen" style="max-width: 100%; max-height: 200px;" />
             </div>
             <br />
-
-            <!-- Campo de Privilegio -->
-            <div class="form-group">
-                <label asp-for="IdPrivilege" class="control-label"></label>
-                <select class="select2 form-select" name="IdPrivilege" id="IdPrivilege">
-                    <option selected value="">Seleccionar</option>
-                    @foreach (var item in privileges!)
-                    {
-                        <option value="@item.Id">@item.Name</option>
-                    }
-                </select>
-                <span asp-validation-for="IdPrivilege" class="text-danger"></span>
+            <div class="form-group-row">
+                <div class="form-group">
+                    <label asp-for="IdPrivilege" class="control-label"></label>
+                    <select class="select2 form-select" name="IdPrivilege" id="IdPrivilege">
+                        <option selected value="">Seleccionar</option>
+                        @foreach (var item in privileges!)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    </select>
+                    <span asp-validation-for="IdPrivilege" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Status" class="control-label"></label>
+                    <select class="form-select" name="Status">
+                        <option value="">Seleccionar</option>
+                        <option selected value="1">Activo</option>
+                        <option value="2">Inactivo</option>
+                    </select>
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
             </div>
-
-            <!-- Campo de Estado -->
-            <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                <select class="form-select" name="Status">
-                    <option value="">Seleccionar</option>
-                    <option selected value="1">Activo</option>
-                    <option value="2">Inactivo</option>
-                </select>
-                <span asp-validation-for="Status" class="text-danger"></span>
-            </div>
-
-            <!-- Botones de acción -->
             <br />
             <div class="form-group">
                 <input type="submit" value="Crear Servidor Jei" class="btn btn-primary" /> |
