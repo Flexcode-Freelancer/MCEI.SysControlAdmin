@@ -6,117 +6,131 @@
     List<ProfessionOrStudy> professionOrStudies = ViewBag.ProfessionOrStudies as List<ProfessionOrStudy>;
 }
 
-<h1>Modificar Membresia Existente</h1>
+@section Style{
+    <link href="/css/Juventud/DesignCreateAndEdit.css" rel="stylesheet" />
+}
+
+<h1>Modificar Joven Existente</h1>
 <span>@ViewBag.Error</span>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-12">
         <form id="Form" asp-action="Edit" onsubmit="CreateRecord(event)" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <h3>Informacion Personal</h3>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+            <div class="form-group-row">
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LastName" class="control-label"></label>
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DateOfBirth" class="control-label"></label>
+                    <input asp-for="DateOfBirth" class="form-control" />
+                    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Age" class="control-label"></label>
+                    <input asp-for="Age" class="form-control" />
+                    <span asp-validation-for="Age" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="LastName" class="control-label"></label>
-                <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger"></span>
+            <div class="form-group-row">
+                <div class="form-group">
+                    <label asp-for="Gender" class="control-label"></label>
+                    <select class="form-select" name="Gender" id="cbxGender">
+                        <option value="" selected>Seleccionar</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                    </select>
+                    <span asp-validation-for="Gender" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CivilStatus" class="control-label"></label>
+                    <select class="form-select" name="CivilStatus" id="cbxCivilStatus">
+                        <option value="" selected>Seleccionar</option>
+                        <option value="Soltero/a">Soltero/a</option>
+                        <option value="Casado/a">Casado/a</option>
+                        <option value="Divorciado/a">Divorciado/a</option>
+                        <option value="Viudo/a">Viudo/a</option>
+                    </select>
+                    <span asp-validation-for="CivilStatus" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Phone" class="control-label"></label>
+                    <input asp-for="Phone" class="form-control" id="inputPhone" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="DateOfBirth" class="control-label"></label>
-                <input asp-for="DateOfBirth" class="form-control" />
-                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+            <div class="form-group-row">
+                <div class="form-group">
+                    <label asp-for="IdProfessionOrStudy" class="control-label"></label>
+                    <select class="select2 form-select" id="cbxProfessionOrStudy" name="IdProfessionOrStudy">
+                        <option value="" selected>Seleccionar</option>
+                        @foreach (var profesionOrStudy in professionOrStudies!)
+                        {
+                            <option value="@profesionOrStudy.Id">@profesionOrStudy.Name</option>
+                        }
+                    </select>
+                    <span asp-validation-for="IdProfessionOrStudy" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="WaterBaptism" class="control-label"></label>
+                    <select class="form-select" name="WaterBaptism" id="cbxWaterBaptism">
+                        <option value="" selected>Seleccionar</option>
+                        <option value="Si, Dentro de la Mision">Si, Dentro de la Mision</option>
+                        <option value="Si, Fuera de la Mision">Si, Fuera de la Mision</option>
+                    </select>
+                    <span asp-validation-for="WaterBaptism" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="BaptismOfTheHolySpirit" class="control-label"></label>
+                    <select class="form-select" name="BaptismOfTheHolySpirit" id="cbxBaptismOfTheHolySpirit">
+                        <option value="" selected>Seleccionar</option>
+                        <option value="Si">Si</option>
+                        <option value="No">No</option>
+                    </select>
+                    <span asp-validation-for="BaptismOfTheHolySpirit" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Age" class="control-label"></label>
-                <input asp-for="Age" class="form-control" />
-                <span asp-validation-for="Age" class="text-danger"></span>
+            <div class="form-group-row">
+                <div class="form-group">
+                    <label asp-for="Status" class="control-label"></label>
+                    <select class="form-select" name="Status" id="cbxStatus">
+                        <option value="" selected>Seleccionar</option>
+                        <option value="1">Activo</option>
+                        <option value="2">Inactivo</option>
+                    </select>
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CommentsOrObservations" class="control-label"></label>
+                    <input asp-for="CommentsOrObservations" class="form-control" />
+                    <span asp-validation-for="CommentsOrObservations" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Gender" class="control-label"></label>
-                <select class="form-select" name="Gender" id="cbxGender">
-                    <option value="" selected>Seleccionar</option>
-                    <option value="Masculino">Masculino</option>
-                    <option value="Femenino">Femenino</option>
-                </select>
-                <span asp-validation-for="Gender" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CivilStatus" class="control-label"></label>
-                <select class="form-select" name="CivilStatus" id="cbxCivilStatus">
-                    <option value="" selected>Seleccionar</option>
-                    <option value="Soltero/a">Soltero/a</option>
-                    <option value="Casado/a">Casado/a</option>
-                    <option value="Divorciado/a">Divorciado/a</option>
-                    <option value="Viudo/a">Viudo/a</option>
-                </select>
-                <span asp-validation-for="CivilStatus" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Phone" class="control-label"></label>
-                <input asp-for="Phone" class="form-control" id="inputPhone" />
-                <span asp-validation-for="Phone" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IdProfessionOrStudy" class="control-label"></label>
-                <select class="select2 form-select" id="cbxProfessionOrStudy" name="IdProfessionOrStudy">
-                    <option value="" selected>Seleccionar</option>
-                    @foreach (var profesionOrStudy in professionOrStudies!)
-                    {
-                        <option value="@profesionOrStudy.Id">@profesionOrStudy.Name</option>
-                    }
-                </select>
-                <span asp-validation-for="IdProfessionOrStudy" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="WaterBaptism" class="control-label"></label>
-                <select class="form-select" name="WaterBaptism" id="cbxWaterBaptism">
-                    <option value="" selected>Seleccionar</option>
-                    <option value="Si, Dentro de la Mision">Si, Dentro de la Mision</option>
-                    <option value="Si, Fuera de la Mision">Si, Fuera de la Mision</option>
-                </select>
-                <span asp-validation-for="WaterBaptism" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BaptismOfTheHolySpirit" class="control-label"></label>
-                <select class="form-select" name="BaptismOfTheHolySpirit" id="cbxBaptismOfTheHolySpirit">
-                    <option value="" selected>Seleccionar</option>
-                    <option value="Si">Si</option>
-                    <option value="No">No</option>
-                </select>
-                <span asp-validation-for="BaptismOfTheHolySpirit" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                <select class="form-select" name="Status" id="cbxStatus">
-                    <option value="" selected>Seleccionar</option>
-                    <option value="1">Activo</option>
-                    <option value="2">Inactivo</option>
-                </select>
-                <span asp-validation-for="Status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CommentsOrObservations" class="control-label"></label>
-                <input asp-for="CommentsOrObservations" class="form-control" />
-                <span asp-validation-for="CommentsOrObservations" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DateCreated" class="control-label"></label>
-                <input asp-for="DateCreated" type="date" class="form-control" readonly />
-                <span asp-validation-for="DateCreated" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DateModification" class="control-label"></label>
-                <input asp-for="DateModification" type="date" class="form-control" readonly />
-                <span asp-validation-for="DateModification" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ImageData" class="control-label"></label>
-                <input type="file" class="form-control" id="imagen" name="imagen" onchange="mostrarImagen()" asp-for="ImageData" />
-                <span asp-validation-for="ImageData" class="text-danger"></span>
+            <div class="form-group-row">
+                <div class="form-group">
+                    <label asp-for="DateCreated" class="control-label"></label>
+                    <input asp-for="DateCreated" type="date" class="form-control" readonly />
+                    <span asp-validation-for="DateCreated" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DateModification" class="control-label"></label>
+                    <input asp-for="DateModification" type="date" class="form-control" readonly />
+                    <span asp-validation-for="DateModification" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ImageData" class="control-label"></label>
+                    <input type="file" class="form-control" id="imagen" name="imagen" onchange="mostrarImagen()" asp-for="ImageData" />
+                    <span asp-validation-for="ImageData" class="text-danger"></span>
+                </div>
             </div>
             <br />
             <div>
