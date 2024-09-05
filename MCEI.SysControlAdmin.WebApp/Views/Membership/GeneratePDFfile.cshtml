@@ -4,58 +4,105 @@
     Layout = null;
 }
 
-<h1>Ficha Oficial Membresia</h1>
-<h2>Misión Cristiana Elim Izalco</h2>
-<h3>Dirección: Lotificacion San Francisco Psje c Casa 5 Pol 6 Izalco </h3>
-<h3>Teléfono: 7435-4408</h3>
-<h3>Celular: 24454322</h3>
-<h3>Correo: elimizalco@gmail.com</h3>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha Membresia PDF</title>
+    <link href="/css/Membership/DesignGeneratePDF.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <table>
+            <tr>
+                <td class="logo">
+                    <img src="/assets/img/logos/Logo-Elim-Black.png" alt="Logo Oficial" width="100%">
+                </td>
+                <td class="text">
+                    <h1>Ficha Oficial - Misión Cristiana Elim Izalco</h1>
+                    <h3>Lotificación San Francisco Psje c Casa 5 Pol 6 Izalco</h3>
+                    <h3>Teléfono: 7435-4408  Celular: 2445-4322</h3>
+                    <h3>Correo: elimizalco@gmail.com</h3>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br />
+    <div class="container">
+        <table>
+            <tr>
+                <td class="info">
+                    <h1>Información Personal</h1>
+                    <div class="line-group">
+                        <p><span class="label">Nombre:</span> @Model.Name</p>
+                        <p><span class="label">Apellido:</span> @Model.LastName</p>
+                        <p id="Dui"><span class="label">Dui:</span> @Model.Dui</p>
+                    </div>
+                    <div class="line-group">
+                        <p><span class="label">Fecha de Nacimiento:</span> @Model.DateOfBirth.ToString("dd/MM/yyyy")</p>
+                        <p><span class="label">Edad:</span> @Model.Age años</p>
+                        <p><span class="label">Género:</span> @Model.Gender</p>
+                    </div>
+                    <div class="line-group">
+                        <p><span class="label">Estado Civil:</span> @Model.CivilStatus</p>
+                        <p><span class="label">Teléfono:</span> @Model.Phone</p>
+                        <p><span class="label">Dirección de Residencia:</span> @Model.Address</p>
+                    </div>
+                    <p><span class="label">Profesión u Oficio:</span> @Model.ProfessionOrStudy!.Name</p>
+                    <p><span class="label">Lugar de Trabajo o Estudio:</span> @Model.PlaceOfWorkOrStudy</p>
+                    <p><span class="label">Teléfono de Trabajo o Estudio:</span> @Model.WorkOrStudyPhone</p>
+                </td>
+                <td class="image">
+                    <!-- Fotografía -->
+                    @if (Model.ImageData != null)
+                    {
+                        <img src="data:image/png;base64,@Convert.ToBase64String(Model.ImageData!)" alt="Fotografía" />
+                    }
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="container">
+        <table>
+            <tr>
+                <td class="info">
+                    <h1>Información Complementaria</h1>
+                    <div class="line-group">
+                        <p style="display:flex"><strong>Fecha de Conversión:</strong> @Model.ConversionDate.ToString("dd/MM/yyyy")</p>
+                        <p><strong>Lugar de Conversión:</strong> @Model.PlaceOfConversion</p>
+                    </div>
+                    <div class="line-group">
+                        <p><strong>Bautismo en Agua:</strong> @Model.WaterBaptism</p>
+                        <p><strong>Bautismo por el Espíritu Santo:</strong> @Model.BaptismOfTheHolySpirit</p>
+                    </div>
+                    <div class="line-group">
+                        <p><strong>Nombre del Pastor:</strong> @Model.PastorsName</p>
+                        <p><strong>Nombre del Supervisor:</strong> @Model.SupervisorsName</p>
+                    </div>
+                    <div class="line-group">
+                        <p><strong>Nombre del Líder:</strong> @Model.LeadersName</p>
+                        <p><strong>Tiempo de Asistir:</strong> @Model.TimeToGather</p>
+                    </div>
+                    <div class="line-group">
+                        <p><strong>  Zona:</strong> # @Model.Zone  <strong>  Distrito:</strong> # @Model.District  <strong>  Sector:</strong> # @Model.Sector  <strong>  Célula:</strong> # @Model.Cell</p>
+                    </div>
+                    <div class="line-group">
 
-<h2>Información Personal</h2>
-<p><strong>Nombre:</strong> @Model.Name</p>
-<p><strong>Apellido:</strong> @Model.LastName</p>
-<p><strong>Dui:</strong> @Model.Dui</p>
-<p><strong>Fecha de Nacimiento:</strong> @Model.DateOfBirth.ToString("dd/MM/yyyy")</p>
-<p><strong>Edad:</strong> @Model.Age años</p>
-<p><strong>Género:</strong> @Model.Gender</p>
-<p><strong>Estado Civil:</strong> @Model.CivilStatus</p>
-<p><strong>Teléfono:</strong> @Model.Phone</p>
-<p><strong>Dirección de Residencia:</strong> @Model.Address</p>
-<p><strong>Profesión u Oficio:</strong> @Model.ProfessionOrStudy!.Name</p>
-<p><strong>Lugar de Trabajo o Estudio:</strong> @Model.PlaceOfWorkOrStudy</p>
-<p><strong>Teléfono de Trabajo o Estudio:</strong> @Model.WorkOrStudyPhone</p>
+                        @if (Model.Status == 1)
+                        {
+                            <p><strong>Estatus:</strong> Activo</p>
+                        }
+                        else if (Model.Status == 2)
+                        {
+                            <p><strong>Estatus:</strong> Inactivo</p>
+                        }
 
-@if (Model.ImageData != null)
-{
-    <p><strong>Fotografía:</strong></p>
-    <img src="data:image/png;base64,@Convert.ToBase64String(Model.ImageData!)" alt="Fotografía" />
-}
-
-<h2>Información Complementaria</h2>
-<p><strong>Fecha de Conversión:</strong> @Model.ConversionDate.ToString("dd/MM/yyyy")</p>
-<p><strong>Lugar de Conversión:</strong> @Model.PlaceOfConversion</p>
-<p><strong>Bautismo en Agua:</strong> @Model.WaterBaptism</p>
-<p><strong>Bautismo por el Espíritu Santo:</strong> @Model.BaptismOfTheHolySpirit</p>
-<p><strong>Nombre del Pastor:</strong> @Model.PastorsName</p>
-<p><strong>Nombre del Supervisor:</strong> @Model.SupervisorsName</p>
-<p><strong>Nombre del Líder:</strong> @Model.LeadersName</p>
-<p><strong>Tiempo de Asistir:</strong> @Model.TimeToGather</p>
-<p><strong>Zona:</strong> @Model.Zone</p>
-<p><strong>Distrito:</strong> @Model.District</p>
-<p><strong>Sector:</strong> @Model.Sector</p>
-<p><strong>Célula:</strong> @Model.Cell</p>
-@if(Model.Status == 1)
-{
-    <p><strong>Estatus:</strong> Activo</p>
-}
-else if(Model.Status == 2)
-{
-    <p><strong>Estatus:</strong> Inactivo</p>
-}
-else
-{
-    <p><strong>Estatus:</strong> Sin Designar</p>
-}
-<p><strong>Comentarios u Observaciones:</strong> @Model.CommentsOrObservations</p>
-<p><strong>Fecha de Cración:</strong> @Model.DateCreated</p>
-<p><strong>Fecha de Modificación:</strong> @Model.DateModification</p>
+                        <p><strong>Comentarios u Observaciones:</strong> @Model.CommentsOrObservations</p>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
