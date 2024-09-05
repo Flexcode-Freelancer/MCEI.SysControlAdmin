@@ -4,43 +4,88 @@
     Layout = null;
 }
 
-<h1>Ficha Oficial Membresia</h1>
-<h2>Misión Cristiana Elim Izalco</h2>
-<h3>Dirección: Lotificacion San Francisco Psje c Casa 5 Pol 6 Izalco </h3>
-<h3>Teléfono: 7435-4408</h3>
-<h3>Celular: 24454322</h3>
-<h3>Correo: elimizalco@gmail.com</h3>
-
-<h2>Información Personal</h2>
-<p><strong>Nombre:</strong> @Model.Juventud!.Name</p>
-<p><strong>Apellido:</strong> @Model.Juventud!.LastName</p>
-<p><strong>Fecha de Nacimiento:</strong> @Model.Juventud!.DateOfBirth.ToString("dd/MM/yyyy")</p>
-<p><strong>Edad:</strong> @Model.Juventud!.Age Años</p>
-<p><strong>Género:</strong> @Model.Juventud!.Gender</p>
-<p><strong>Estado Civil:</strong> @Model.Juventud!.CivilStatus</p>
-<p><strong>Teléfono:</strong> @Model.Juventud!.Phone</p>
-<p><strong>Bautismo En Agua:</strong> @Model.Juventud!.WaterBaptism</p>
-<p><strong>Bautizmo Por El Espiritu Santo:</strong> @Model.Juventud!.BaptismOfTheHolySpirit</p>
-
-@if (Model.Juventud!.ImageData != null)
-{
-    <p><strong>Fotografía:</strong></p>
-    <img src="data:image/png;base64,@Convert.ToBase64String(Model.Juventud!.ImageData!)" alt="Fotografía" />
-}
-
-<h2>Información Complementaria</h2>
-<p><strong>Privilegio:</strong> @Model.Privilege!.Name</p>
-@if (Model.Status == 1)
-{
-    <p><strong>Estatus:</strong> Activo</p>
-}
-else if (Model.Status == 2)
-{
-    <p><strong>Estatus:</strong> Inactivo</p>
-}
-else
-{
-    <p><strong>Estatus:</strong> Sin Designar</p>
-}
-<p><strong>Fecha de Cración:</strong> @Model.DateCreated</p>
-<p><strong>Fecha de Modificación:</strong> @Model.DateModification</p>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha Membresia PDF</title>
+    <link href="/css/ServerJei/DesignGeneratePDF.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <table>
+            <tr>
+                <td class="logo">
+                    <img src="/assets/img/logos/Logo-Elim-Black.png" alt="Logo Oficial" width="100%">
+                </td>
+                <td class="text">
+                    <h1>Formulario ServidorJei - Misión Cristiana Elim Izalco</h1>
+                    <h3>Lotificación San Francisco Psje c Casa 5 Pol 6 Izalco</h3>
+                    <h3>Teléfono: 7435-4408  Celular: 2445-4322</h3>
+                    <h3>Correo: elimizalco@gmail.com</h3>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br />
+    <div class="container">
+        <table>
+            <tr>
+                <td class="info">
+                    <h1>Información Personal</h1>
+                    <div class="line-group">
+                        <p><strong>Nombre:</strong> @Model.Juventud!.Name</p>
+                        <p><strong>Apellido:</strong> @Model.Juventud!.LastName</p>
+                    </div>
+                    <div class="line-group">
+                        <p><strong>Fecha de Nacimiento:</strong> @Model.Juventud!.DateOfBirth.ToString("dd/MM/yyyy")</p>
+                        <p><strong>Edad:</strong> @Model.Juventud!.Age Años</p>
+                        <p><strong>Género:</strong> @Model.Juventud!.Gender</p>
+                    </div>
+                    <div class="line-group">
+                        <p><strong>Estado Civil:</strong> @Model.Juventud!.CivilStatus</p>
+                        <p><strong>Teléfono:</strong> @Model.Juventud!.Phone</p>
+                    </div>
+                    <div class="line-group">
+                        <p><strong>Bautismo En Agua:</strong> @Model.Juventud!.WaterBaptism</p>
+                        <p><strong>Bautizmo Por El Espiritu Santo:</strong> @Model.Juventud!.BaptismOfTheHolySpirit</p>
+                    </div>
+                </td>
+                <td class="image">
+                    @if (Model.Juventud!.ImageData != null)
+                    {
+                        <img src="data:image/png;base64,@Convert.ToBase64String(Model.Juventud!.ImageData!)" alt="Fotografía" />
+                    }
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="container">
+        <table>
+            <tr>
+                <td class="info">
+                    <h1>Información Complementaria</h1>
+                    <div class="line-group">
+                        <p><strong>Privilegio:</strong> @Model.Privilege!.Name</p>
+                        @if (Model.Status == 1)
+                        {
+                            <p><strong>Estatus:</strong> Activo</p>
+                        }
+                        else if (Model.Status == 2)
+                        {
+                            <p><strong>Estatus:</strong> Inactivo</p>
+                        }
+                        else
+                        {
+                            <p><strong>Estatus:</strong> Sin Designar</p>
+                        }
+                        <p><strong>Fecha de Cración:</strong> @Model.DateCreated</p>
+                        <p><strong>Fecha de Modificación:</strong> @Model.DateModification</p>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
