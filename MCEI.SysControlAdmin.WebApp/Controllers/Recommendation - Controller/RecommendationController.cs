@@ -41,6 +41,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Recommendation___Controller
         {
             var generatePDF = await membershipBL.GetByIdAsync(new Membership { Id = id });
             string fileName = $"CartaDeRecomendacion_{generatePDF.Name}_{generatePDF.LastName}_{generatePDF.Dui}_MCEI.pdf";
+            generatePDF.DateNow = DateTime.Now.ToString("dd 'de' MMMM 'de' yyyy", new System.Globalization.CultureInfo("es-ES"));
             return new ViewAsPdf("GeneratePDFfile", generatePDF)
             {
                 FileName = fileName

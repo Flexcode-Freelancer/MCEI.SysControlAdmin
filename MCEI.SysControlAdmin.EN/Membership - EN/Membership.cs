@@ -170,6 +170,12 @@ namespace MCEI.SysControlAdmin.EN.Membership___EN
         [Display(Name = "Fotografia")]
         public byte[]? ImageData { get; set; }
 
+
+        // Atributo netamente fuera de la tabla pero si usado en la
+        // vista GeneratePDFfile para anexar dia actual al que se extiende dicha carta
+        [NotMapped]
+        public string? DateNow { get; set; }
+
         #endregion
 
         public ProfessionOrStudy? ProfessionOrStudy { get; set; } //propiedad de navegación
