@@ -40,7 +40,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Recommendation___Controller
         public async Task<ActionResult> GeneratePDFfile(int id)
         {
             var generatePDF = await membershipBL.GetByIdAsync(new Membership { Id = id });
-            string fileName = $"CartaDeRecomendación_{generatePDF.Name}_{generatePDF.LastName}_{generatePDF.Dui}_MCEI.pdf";
+            string fileName = $"CartaDeRecomendacion_{generatePDF.Name}_{generatePDF.LastName}_{generatePDF.Dui}_MCEI.pdf";
             return new ViewAsPdf("GeneratePDFfile", generatePDF)
             {
                 FileName = fileName
