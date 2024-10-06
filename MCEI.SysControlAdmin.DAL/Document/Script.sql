@@ -19,6 +19,9 @@ GO
     );
 GO
     INSERT INTO [Role] VALUES('Desarrollador');
+    INSERT INTO [Role] VALUES('Administrador');
+    INSERT INTO [Role] VALUES('Digitador');
+    INSERT INTO [Role] VALUES('Directivo Juvenil');
 GO
     INSERT INTO [User] (IdRole, [Name], LastName, Email, [Password], [Status], RegistrationDate) 
     VALUES (1, 'Flexcode', 'Freelancer', 'DesAdmin@elimizalco.com', 'c8aa131427a72781b156ac723ddb917f', 1, SYSDATETIME());
