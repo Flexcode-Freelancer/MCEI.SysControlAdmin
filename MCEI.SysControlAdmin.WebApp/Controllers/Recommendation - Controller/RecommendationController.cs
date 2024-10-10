@@ -12,7 +12,7 @@ using Rotativa.AspNetCore;
 
 namespace MCEI.SysControlAdmin.WebApp.Controllers.Recommendation___Controller
 {
-    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme, Roles = "Desarrollador")]
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme, Roles = "Desarrollador, Administrador")]
     public class RecommendationController : Controller
     {
         // Creamos Una Instancia Para Acceder a Los Metodos
@@ -21,7 +21,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Recommendation___Controller
 
         #region METODO PARA MOSTRAR INDEX
         // Accion Para Mostrar La Vista Index
-        [Authorize(Roles = "Desarrollador")]
+        [Authorize(Roles = "Desarrollador, Administrador")]
         public async Task<IActionResult> Index(Membership membership = null!)
         {
             if (membership == null)
@@ -37,6 +37,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Recommendation___Controller
 
         #region METODO PARA REPORTE
         // Metodo Para Generar Ficha o Reporte En PDF 
+        [Authorize(Roles = "Desarrollador, Administrador")]
         public async Task<ActionResult> GeneratePDFfile(int id)
         {
             var generatePDF = await membershipBL.GetByIdAsync(new Membership { Id = id });

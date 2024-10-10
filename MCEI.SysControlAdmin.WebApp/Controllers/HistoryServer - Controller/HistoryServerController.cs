@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MCEI.SysControlAdmin.WebApp.Controllers.HistoryServer___Controller
 {
-    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme, Roles = "Desarrollador")]
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme, Roles = "Desarrollador, Administrador")]
     public class HistoryServerController : Controller
     {
         // Creamos las instancias para acceder a los metodos
@@ -25,7 +25,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.HistoryServer___Controller
 
         #region METODO PARA MOSTRAR INDEX
         // Accion Para Mostrar La Vista Index
-        [Authorize(Roles = "Desarrollador")]
+        [Authorize(Roles = "Desarrollador, Administrador")]
         public async Task<IActionResult> Index(HistoryServer historyServer = null!)
         {
             if (historyServer == null)
@@ -42,7 +42,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.HistoryServer___Controller
         #endregion
 
         // Metod que extrae por Id y devolver a la vista en foramto Json
-        [Authorize(Roles = "Desarrollador")]
+        [Authorize(Roles = "Desarrollador, Administrador")]
         [HttpGet]
         public async Task<IActionResult> GetMembershipDetails(int id)
         {
@@ -70,7 +70,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.HistoryServer___Controller
 
         #region METODO PARA MOSTRAR DETALLES
         // Acción Que Muestra El Detalle De Un Registro
-        [Authorize(Roles = "Desarrollador")]
+        [Authorize(Roles = "Desarrollador, Administrador")]
         public async Task<IActionResult> Details(int id)
         {
             try

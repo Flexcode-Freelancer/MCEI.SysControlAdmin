@@ -14,7 +14,7 @@ using Rotativa.AspNetCore;
 
 namespace MCEI.SysControlAdmin.WebApp.Controllers.Membership___Controller
 {
-    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme, Roles = "Desarrollador")]
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme, Roles = "Desarrollador, Administrador")]
     public class MembershipController : Controller
     {
         // Creamos Una Instancia Para Acceder a Los Metodos
@@ -23,7 +23,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Membership___Controller
 
         #region METODO PARA MOSTRAR INDEX
         // Accion Para Mostrar La Vista Index
-        [Authorize(Roles = "Desarrollador")]
+        [Authorize(Roles = "Desarrollador, Administrador")]
         public async Task<IActionResult> Index(Membership membership = null!)
         {
             if (membership == null)
@@ -39,7 +39,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Membership___Controller
 
         #region METODO PARA CREAR
         // Accion Para Mostrar La Vista De Crear
-        [Authorize(Roles = "Desarrollador")]
+        [Authorize(Roles = "Desarrollador, Administrador")]
         public async Task<IActionResult> Create()
         {
             ViewBag.ProfessionOrStudies = await professionOrStudyBL.GetAllAsync();
@@ -48,7 +48,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Membership___Controller
         }
 
         // Accion Que Recibe Los Datos Del Formulario Para Ser Enviados a La BD
-        [Authorize(Roles = "Desarrollador")]
+        [Authorize(Roles = "Desarrollador, Administrador")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Membership membership, IFormFile imagen)
@@ -85,7 +85,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Membership___Controller
 
         #region METODO PARA MODIFICAR
         // Acción que muestra la vista de modificar
-        [Authorize(Roles = "Desarrollador")]
+        [Authorize(Roles = "Desarrollador, Administrador")]
         public async Task<IActionResult> Edit(int id)
         {
             try
@@ -111,7 +111,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Membership___Controller
         }
 
         // Acción que recibe los datos del formulario para ser enviados a la base de datos
-        [Authorize(Roles = "Desarrollador")]
+        [Authorize(Roles = "Desarrollador, Administrador")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Membership membership, IFormFile imagen)
@@ -154,7 +154,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Membership___Controller
 
         #region METODO PARA MOSTRAR DETALLES
         // Accion Que Muestra El Detalle De Un Registro
-        [Authorize(Roles = "Desarrollador")]
+        [Authorize(Roles = "Desarrollador, Administrador")]
         public async Task<IActionResult> Details(int id)
         {
             try
@@ -182,7 +182,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Membership___Controller
 
         #region METODO PARA ELIMINAR
         // Accion Que Muestra La Vista De Eliminar
-        [Authorize(Roles = "Desarrollador")]
+        [Authorize(Roles = "Desarrollador, Administrador")]
         public async Task<IActionResult> Delete(int id)
         {
             try
@@ -208,7 +208,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Membership___Controller
         }
 
         // Accion Que Recibe Los Datos Del Formulario Para Ser Enviados a La BD
-        [Authorize(Roles = "Desarrollador")]
+        [Authorize(Roles = "Desarrollador, Administrador")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id, Membership membership)
@@ -235,6 +235,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Membership___Controller
 
         #region METODO PARA REPORTE
         // Metodo Para Generar Ficha o Reporte En PDF 
+        [Authorize(Roles = "Desarrollador, Administrador")]
         public async Task<ActionResult> GeneratePDFfile(int id)
         {
             var generatePDF = await membershipBL.GetByIdAsync(new Membership { Id = id });

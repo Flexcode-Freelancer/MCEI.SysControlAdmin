@@ -6,16 +6,16 @@ using System.Diagnostics;
 
 namespace MCEI.SysControlAdmin.WebApp.Controllers
 {
-    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme, Roles = "Desarrollador, Administrador")]
     public class HomeController : Controller
     {
-        [Authorize(Roles = "Desarrollador")]
+        [Authorize(Roles = "Desarrollador, Administrador")]
         public IActionResult Index()
         {
             return View();
         }
 
-        [Authorize(Roles = "Desarrollador")]
+        [Authorize(Roles = "Desarrollador, Administrador")]
         public IActionResult Dashboard()
         {
             return View();

@@ -15,7 +15,7 @@ using System.Security.Claims;
 
 namespace MCEI.SysControlAdmin.WebApp.Controllers.User___Controller
 {
-    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme, Roles = "Desarrollador")]
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme, Roles = "Desarrollador, Administrador")]
     public class UserController : Controller
     {
         // Instancias Para Acceder a Los Metodos
@@ -24,7 +24,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.User___Controller
 
         #region METODO PARA INDEX
         // Metodo Para Mostrar La Vista Index
-        [Authorize(Roles = "Desarrollador")]
+        [Authorize(Roles = "Desarrollador, Administrador")]
         public async Task<IActionResult> Index(User user = null!)
         {
             if (user == null)
@@ -46,7 +46,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.User___Controller
 
         #region METODO PARA GUARDAR
         // Accion Que Muestra El Formulario
-        [Authorize(Roles = "Desarrollador")]
+        [Authorize(Roles = "Desarrollador, Administrador")]
         public async Task<IActionResult> Create()
         {
             var roles = await roleBL.GetAllAsync();
@@ -55,7 +55,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.User___Controller
         }
 
         // Accion Que Recibe Los Datos y Los Envia a La Base De Datos
-        [Authorize(Roles = "Desarrollador")]
+        [Authorize(Roles = "Desarrollador, Administrador")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(User user)
@@ -77,7 +77,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.User___Controller
 
         #region METODO PARA MODIFICAR
         // Accion Que Muestra El Formulario
-        [Authorize(Roles = "Desarrollador")]
+        [Authorize(Roles = "Desarrollador, Administrador")]
         public async Task<IActionResult> Edit(int id)
         {
             var user = await userBL.GetByIdAsync(new User { Id = id });
@@ -87,7 +87,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.User___Controller
         }
 
         // Accion Que Recibe Los Datos y Los Envia a La Base De Datos
-        [Authorize(Roles = "Desarrollador")]
+        [Authorize(Roles = "Desarrollador, Administrador")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, User user)
@@ -109,7 +109,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.User___Controller
 
         #region METODO PARA ELIMINAR
         // Accion Que Muestra El Formulario
-        [Authorize(Roles = "Desarrollador")]
+        [Authorize(Roles = "Desarrollador, Administrador")]
         public async Task<IActionResult> Delete(int id)
         {
             var user = await userBL.GetByIdAsync(new User { Id = id });
@@ -119,7 +119,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.User___Controller
         }
 
         // Accion Que Recibe Los Datos y Los Envia a La Base De Datos
-        [Authorize(Roles = "Desarrollador")]
+        [Authorize(Roles = "Desarrollador, Administrador")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id, User user)
@@ -145,7 +145,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.User___Controller
 
         #region METODO PARA DETALLES
         // Accion Que Muestra El Formulario
-        [Authorize(Roles = "Desarrollador")]
+        [Authorize(Roles = "Desarrollador, Administrador")]
         public async Task<IActionResult> Details(int id)
         {
             var user = await userBL.GetByIdAsync(new User { Id = id });
