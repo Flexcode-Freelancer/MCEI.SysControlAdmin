@@ -35,161 +35,414 @@
                     <!-- Sidebar navigation-->
                     <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
                         <ul id="sidebarnav">
-                            <!-- SECCION PRINCIPAL -->
-                            <li class="nav-small-cap">
-                                <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                                <span class="hide-menu">Principal</span>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link" asp-area="" asp-controller="Home" asp-action="Index" aria-expanded="false">
-                                    <span>
-                                        <i class="ti ti-home"></i>
-                                    </span>
-                                    <span class="hide-menu">Inicio</span>
-                                </a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link" asp-area="" asp-controller="Home" asp-action="Dashboard" aria-expanded="false">
-                                    <span>
-                                        <i class="ti ti-layout-dashboard"></i>
-                                    </span>
-                                    <span class="hide-menu">Dashboard</span>
-                                </a>
-                            </li>
-                            <!-- SECCION ADMINISTRACION -->
-                            <li class="nav-small-cap">
-                                <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                                <span class="hide-menu">Administracion</span>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link" asp-area="" asp-controller="Membership" asp-action="Index" aria-expanded="false">
-                                    <span>
-                                        <i class="ti ti-building-church"></i>
-                                    </span>
-                                    <span class="hide-menu">Membresia</span>
-                                </a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link" asp-area="" asp-controller="Server" asp-action="Index" aria-expanded="false">
-                                    <span>
-                                        <i class="ti ti-server-cog"></i>
-                                    </span>
-                                    <span class="hide-menu">Servidores</span>
-                                </a>
-                            </li>
-                            <!-- SECCION HISTORIAL Y REPORTES -->
-                            <li class="nav-small-cap">
-                                <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                                <span class="hide-menu">Historial y Reportes</span>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link" asp-area="" asp-controller="HistoryServer" asp-action="Index" aria-expanded="false">
-                                    <span>
-                                        <i class="ti ti-history"></i>
-                                    </span>
-                                    <span class="hide-menu">Historial Servidores</span>
-                                </a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link" asp-area="" asp-controller="Recommendation" asp-action="Index" aria-expanded="false">
-                                    <span>
-                                        <i class="ti ti-file-text"></i>
-                                    </span>
-                                    <span class="hide-menu">Recomendación</span>
-                                </a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link" asp-area="" asp-controller="" asp-action="Index" aria-expanded="false">
-                                    <span>
-                                        <i class="ti ti-file"></i>
-                                    </span>
-                                    <span class="hide-menu">Reporte Servidor</span>
-                                </a>
-                            </li>
-                            <!-- SECCION ADMINISTRACION JUVENTUD -->
-                            <li class="nav-small-cap">
-                                <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                                <span class="hide-menu">Administracion Juvenil</span>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link" asp-area="" asp-controller="Juventud" asp-action="Index" aria-expanded="false">
-                                    <span>
-                                        <i class="ti ti-building-church"></i>
-                                    </span>
-                                    <span class="hide-menu">Juventud</span>
-                                </a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link" asp-area="" asp-controller="ServerJei" asp-action="Index" aria-expanded="false">
-                                    <span>
-                                        <i class="ti ti-server-cog"></i>
-                                    </span>
-                                    <span class="hide-menu">Servidor Juvenil</span>
-                                </a>
-                            </li>
-                            <!-- SECCION HISTORIAL JUVENIL -->
-                            <li class="nav-small-cap">
-                                <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                                <span class="hide-menu">Historial JEI</span>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link" asp-area="" asp-controller="HistoryServerJei" asp-action="Index" aria-expanded="false">
-                                    <span>
-                                        <i class="ti ti-building-church"></i>
-                                    </span>
-                                    <span class="hide-menu">Historial Servidor JEI</span>
-                                </a>
-                            </li>
-                            <!-- SECCION MANTENIMIENTO -->
-                            <li class="nav-small-cap">
-                                <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                                <span class="hide-menu">Mantenimiento</span>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link" asp-area="" asp-controller="ProfessionOrStudy" asp-action="Index" aria-expanded="false">
-                                    <span>
-                                        <i class="ti ti-school"></i>
-                                    </span>
-                                    <span class="hide-menu">Profesion u Oficio</span>
-                                </a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link" asp-area="" asp-controller="Privilege" asp-action="Index" aria-expanded="false">
-                                    <span>
-                                        <i class="ti ti-address-book"></i>
-                                    </span>
-                                    <span class="hide-menu">Privilegios</span>
-                                </a>
-                            </li>
-                            <!-- SECCION SEGURIDAD -->
-                            <li class="nav-small-cap">
-                                <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                                <span class="hide-menu">Seguridad</span>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link" asp-area="" asp-controller="Role" asp-action="Index" aria-expanded="false">
-                                    <span>
-                                        <i class="ti ti-git-fork"></i>
-                                    </span>
-                                    <span class="hide-menu">Roles</span>
-                                </a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link" asp-area="" asp-controller="User" asp-action="Index" aria-expanded="false">
-                                    <span>
-                                        <i class="ti ti-users"></i>
-                                    </span>
-                                    <span class="hide-menu">Usuarios</span>
-                                </a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link" asp-area="" asp-controller="User" asp-action="ChangePassword" aria-expanded="false">
-                                    <span>
-                                        <i class="ti ti-refresh"></i>
-                                    </span>
-                                    <span class="hide-menu">Cambiar Contraseña</span>
-                                </a>
-                            </li>
+                            @if (User.IsInRole("Desarrollador"))
+                            {
+                                <!-- SECCION PRINCIPAL -->
+                                <li class="nav-small-cap">
+                                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                                    <span class="hide-menu">Principal</span>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" asp-area="" asp-controller="Home" asp-action="Index" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-home"></i>
+                                        </span>
+                                        <span class="hide-menu">Inicio</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" asp-area="" asp-controller="Home" asp-action="Dashboard" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-layout-dashboard"></i>
+                                        </span>
+                                        <span class="hide-menu">Dashboard</span>
+                                    </a>
+                                </li>
+                                <!-- SECCION ADMINISTRACION -->
+                                <li class="nav-small-cap">
+                                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                                    <span class="hide-menu">Administracion</span>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" asp-area="" asp-controller="Membership" asp-action="Index" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-building-church"></i>
+                                        </span>
+                                        <span class="hide-menu">Membresia</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" asp-area="" asp-controller="Server" asp-action="Index" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-server-cog"></i>
+                                        </span>
+                                        <span class="hide-menu">Servidores</span>
+                                    </a>
+                                </li>
+                                <!-- SECCION HISTORIAL Y REPORTES -->
+                                <li class="nav-small-cap">
+                                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                                    <span class="hide-menu">Historial y Reportes</span>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" asp-area="" asp-controller="HistoryServer" asp-action="Index" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-history"></i>
+                                        </span>
+                                        <span class="hide-menu">Historial Servidores</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" asp-area="" asp-controller="Recommendation" asp-action="Index" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-file-text"></i>
+                                        </span>
+                                        <span class="hide-menu">Recomendación</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" asp-area="" asp-controller="" asp-action="Index" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-file"></i>
+                                        </span>
+                                        <span class="hide-menu">Reporte Servidor</span>
+                                    </a>
+                                </li>
+                                <!-- SECCION ADMINISTRACION JUVENTUD -->
+                                <li class="nav-small-cap">
+                                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                                    <span class="hide-menu">Administracion Juvenil</span>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" asp-area="" asp-controller="Juventud" asp-action="Index" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-building-church"></i>
+                                        </span>
+                                        <span class="hide-menu">Juventud</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" asp-area="" asp-controller="ServerJei" asp-action="Index" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-server-cog"></i>
+                                        </span>
+                                        <span class="hide-menu">Servidor Juvenil</span>
+                                    </a>
+                                </li>
+                                <!-- SECCION HISTORIAL JUVENIL -->
+                                <li class="nav-small-cap">
+                                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                                    <span class="hide-menu">Historial JEI</span>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" asp-area="" asp-controller="HistoryServerJei" asp-action="Index" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-building-church"></i>
+                                        </span>
+                                        <span class="hide-menu">Historial Servidor JEI</span>
+                                    </a>
+                                </li>
+                                <!-- SECCION MANTENIMIENTO -->
+                                <li class="nav-small-cap">
+                                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                                    <span class="hide-menu">Mantenimiento</span>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" asp-area="" asp-controller="ProfessionOrStudy" asp-action="Index" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-school"></i>
+                                        </span>
+                                        <span class="hide-menu">Profesion u Oficio</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" asp-area="" asp-controller="Privilege" asp-action="Index" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-address-book"></i>
+                                        </span>
+                                        <span class="hide-menu">Privilegios</span>
+                                    </a>
+                                </li>
+                                <!-- SECCION SEGURIDAD -->
+                                <li class="nav-small-cap">
+                                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                                    <span class="hide-menu">Seguridad</span>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" asp-area="" asp-controller="Role" asp-action="Index" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-git-fork"></i>
+                                        </span>
+                                        <span class="hide-menu">Roles</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" asp-area="" asp-controller="User" asp-action="Index" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-users"></i>
+                                        </span>
+                                        <span class="hide-menu">Usuarios</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" asp-area="" asp-controller="User" asp-action="ChangePassword" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-refresh"></i>
+                                        </span>
+                                        <span class="hide-menu">Cambiar Contraseña</span>
+                                    </a>
+                                </li>
+                            }
+                            else if (User.IsInRole("Administrador"))
+                            {
+                                <!-- SECCION PRINCIPAL -->
+                                <li class="nav-small-cap">
+                                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                                    <span class="hide-menu">Principal</span>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" asp-area="" asp-controller="Home" asp-action="Index" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-home"></i>
+                                        </span>
+                                        <span class="hide-menu">Inicio</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" asp-area="" asp-controller="Home" asp-action="Dashboard" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-layout-dashboard"></i>
+                                        </span>
+                                        <span class="hide-menu">Dashboard</span>
+                                    </a>
+                                </li>
+                                <!-- SECCION ADMINISTRACION -->
+                                <li class="nav-small-cap">
+                                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                                    <span class="hide-menu">Administracion</span>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" asp-area="" asp-controller="Membership" asp-action="Index" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-building-church"></i>
+                                        </span>
+                                        <span class="hide-menu">Membresia</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" asp-area="" asp-controller="Server" asp-action="Index" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-server-cog"></i>
+                                        </span>
+                                        <span class="hide-menu">Servidores</span>
+                                    </a>
+                                </li>
+                                <!-- SECCION HISTORIAL Y REPORTES -->
+                                <li class="nav-small-cap">
+                                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                                    <span class="hide-menu">Historial y Reportes</span>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" asp-area="" asp-controller="HistoryServer" asp-action="Index" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-history"></i>
+                                        </span>
+                                        <span class="hide-menu">Historial Servidores</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" asp-area="" asp-controller="Recommendation" asp-action="Index" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-file-text"></i>
+                                        </span>
+                                        <span class="hide-menu">Recomendación</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" asp-area="" asp-controller="" asp-action="Index" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-file"></i>
+                                        </span>
+                                        <span class="hide-menu">Reporte Servidor</span>
+                                    </a>
+                                </li>
+                                <!-- SECCION MANTENIMIENTO -->
+                                <li class="nav-small-cap">
+                                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                                    <span class="hide-menu">Mantenimiento</span>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" asp-area="" asp-controller="ProfessionOrStudy" asp-action="Index" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-school"></i>
+                                        </span>
+                                        <span class="hide-menu">Profesion u Oficio</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" asp-area="" asp-controller="Privilege" asp-action="Index" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-address-book"></i>
+                                        </span>
+                                        <span class="hide-menu">Privilegios</span>
+                                    </a>
+                                </li>
+                                <!-- SECCION SEGURIDAD -->
+                                <li class="nav-small-cap">
+                                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                                    <span class="hide-menu">Seguridad</span>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" asp-area="" asp-controller="User" asp-action="Index" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-users"></i>
+                                        </span>
+                                        <span class="hide-menu">Usuarios</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" asp-area="" asp-controller="User" asp-action="ChangePassword" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-refresh"></i>
+                                        </span>
+                                        <span class="hide-menu">Cambiar Contraseña</span>
+                                    </a>
+                                </li>
+                            }
+                            else if (User.IsInRole("Digitador"))
+                            {
+                                <!-- SECCION PRINCIPAL -->
+                                <li class="nav-small-cap">
+                                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                                    <span class="hide-menu">Principal</span>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" asp-area="" asp-controller="Home" asp-action="Index" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-home"></i>
+                                        </span>
+                                        <span class="hide-menu">Inicio</span>
+                                    </a>
+                                </li>
+                                <!-- SECCION ADMINISTRACION -->
+                                <li class="nav-small-cap">
+                                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                                    <span class="hide-menu">Administracion</span>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" asp-area="" asp-controller="Membership" asp-action="Index" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-building-church"></i>
+                                        </span>
+                                        <span class="hide-menu">Membresia</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" asp-area="" asp-controller="Server" asp-action="Index" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-server-cog"></i>
+                                        </span>
+                                        <span class="hide-menu">Servidores</span>
+                                    </a>
+                                </li>
+                                <!-- SECCION MANTENIMIENTO -->
+                                <li class="nav-small-cap">
+                                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                                    <span class="hide-menu">Mantenimiento</span>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" asp-area="" asp-controller="ProfessionOrStudy" asp-action="Index" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-school"></i>
+                                        </span>
+                                        <span class="hide-menu">Profesion u Oficio</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" asp-area="" asp-controller="Privilege" asp-action="Index" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-address-book"></i>
+                                        </span>
+                                        <span class="hide-menu">Privilegios</span>
+                                    </a>
+                                </li>
+                                <!-- SECCION SEGURIDAD -->
+                                <li class="nav-small-cap">
+                                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                                    <span class="hide-menu">Seguridad</span>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" asp-area="" asp-controller="User" asp-action="ChangePassword" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-refresh"></i>
+                                        </span>
+                                        <span class="hide-menu">Cambiar Contraseña</span>
+                                    </a>
+                                </li>
+                            }
+                            else if (User.IsInRole("Directivo Juvenil"))
+                            {
+                                <!-- SECCION PRINCIPAL -->
+                                <li class="nav-small-cap">
+                                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                                    <span class="hide-menu">Principal</span>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" asp-area="" asp-controller="Home" asp-action="Index" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-home"></i>
+                                        </span>
+                                        <span class="hide-menu">Inicio</span>
+                                    </a>
+                                </li>
+                                <!-- SECCION ADMINISTRACION JUVENTUD -->
+                                <li class="nav-small-cap">
+                                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                                    <span class="hide-menu">Administracion Juvenil</span>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" asp-area="" asp-controller="Juventud" asp-action="Index" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-building-church"></i>
+                                        </span>
+                                        <span class="hide-menu">Juventud</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" asp-area="" asp-controller="ServerJei" asp-action="Index" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-server-cog"></i>
+                                        </span>
+                                        <span class="hide-menu">Servidor Juvenil</span>
+                                    </a>
+                                </li>
+                                <!-- SECCION HISTORIAL JUVENIL -->
+                                <li class="nav-small-cap">
+                                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                                    <span class="hide-menu">Historial JEI</span>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" asp-area="" asp-controller="HistoryServerJei" asp-action="Index" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-building-church"></i>
+                                        </span>
+                                        <span class="hide-menu">Historial Servidor JEI</span>
+                                    </a>
+                                </li>
+                                <!-- SECCION SEGURIDAD -->
+                                <li class="nav-small-cap">
+                                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                                    <span class="hide-menu">Seguridad</span>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" asp-area="" asp-controller="User" asp-action="ChangePassword" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-refresh"></i>
+                                        </span>
+                                        <span class="hide-menu">Cambiar Contraseña</span>
+                                    </a>
+                                </li>
+                            }
                         </ul>
                     </nav>
                     <!-- End Sidebar navigation -->
