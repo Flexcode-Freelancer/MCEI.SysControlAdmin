@@ -14,7 +14,7 @@ using Rotativa.AspNetCore;
 
 namespace MCEI.SysControlAdmin.WebApp.Controllers.Juventud___Controller
 {
-    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme, Roles = "Desarrollador")]
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme, Roles = "Desarrollador, Directivo Juvenil")]
     public class JuventudController : Controller
     {
         // Creamos Una Instancia Para Acceder a Los Metodos
@@ -23,7 +23,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Juventud___Controller
 
         #region METODO PARA MOSTRAR INDEX
         // Accion Para Mostrar La Vista Index
-        [Authorize(Roles = "Desarrollador")]
+        [Authorize(Roles = "Desarrollador, Directivo Juvenil")]
         public async Task<IActionResult> Index(Juventud juventud = null!)
         {
             if (juventud == null)
@@ -39,7 +39,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Juventud___Controller
 
         #region METODO PARA CREAR
         // Accion Para Mostrar La Vista De Crear
-        [Authorize(Roles = "Desarrollador")]
+        [Authorize(Roles = "Desarrollador, Directivo Juvenil")]
         public async Task<IActionResult> Create()
         {
             ViewBag.ProfessionOrStudies = await professionOrStudyBL.GetAllAsync();
@@ -48,7 +48,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Juventud___Controller
         }
 
         // Accion Que Recibe Los Datos Del Formulario Para Ser Enviados a La BD
-        [Authorize(Roles = "Desarrollador")]
+        [Authorize(Roles = "Desarrollador, Directivo Juvenil")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Juventud juventud, IFormFile imagen)
@@ -84,7 +84,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Juventud___Controller
 
         #region METODO PARA MODIFICAR
         // Acción que muestra la vista de modificar
-        [Authorize(Roles = "Desarrollador")]
+        [Authorize(Roles = "Desarrollador, Directivo Juvenil")]
         public async Task<IActionResult> Edit(int id)
         {
             try
@@ -110,7 +110,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Juventud___Controller
         }
 
         // Acción que recibe los datos del formulario para ser enviados a la base de datos
-        [Authorize(Roles = "Desarrollador")]
+        [Authorize(Roles = "Desarrollador, Directivo Juvenil")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Juventud juventud, IFormFile imagen)
@@ -153,7 +153,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Juventud___Controller
 
         #region METODO PARA MOSTRAR DETALLES
         // Accion Que Muestra El Detalle De Un Registro
-        [Authorize(Roles = "Desarrollador")]
+        [Authorize(Roles = "Desarrollador, Directivo Juvenil")]
         public async Task<IActionResult> Details(int id)
         {
             try
@@ -181,7 +181,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Juventud___Controller
 
         #region METODO PARA ELIMINAR
         // Accion Que Muestra La Vista De Eliminar
-        [Authorize(Roles = "Desarrollador")]
+        [Authorize(Roles = "Desarrollador, Directivo Juvenil")]
         public async Task<IActionResult> Delete(int id)
         {
             try
@@ -207,7 +207,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Juventud___Controller
         }
 
         // Accion Que Recibe Los Datos Del Formulario Para Ser Enviados a La BD
-        [Authorize(Roles = "Desarrollador")]
+        [Authorize(Roles = "Desarrollador, Directivo Juvenil")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id, Juventud juventud)
@@ -234,6 +234,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Juventud___Controller
 
         #region METODO PARA REPORTE
         // Metodo Para Generar Ficha o Reporte En PDF
+        [Authorize(Roles = "Desarrollador, Directivo Juvenil")]
         public async Task<ActionResult> GeneratePDFfile(int id)
         {
             var generatePDF = await juventudBL.GetByIdAsync(new Juventud { Id  = id });

@@ -15,7 +15,7 @@ using System.Security.Claims;
 
 namespace MCEI.SysControlAdmin.WebApp.Controllers.User___Controller
 {
-    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme, Roles = "Desarrollador, Administrador, Digitador")]
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme, Roles = "Desarrollador, Administrador, Digitador, Directivo Juvenil")]
     public class UserController : Controller
     {
         // Instancias Para Acceder a Los Metodos

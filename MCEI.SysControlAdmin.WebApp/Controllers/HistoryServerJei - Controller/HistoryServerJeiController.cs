@@ -20,7 +20,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MCEI.SysControlAdmin.WebApp.Controllers.HistoryServerJei___Controller
 {
-    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme, Roles = "Desarrollador")]
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme, Roles = "Desarrollador, Directivo Juvenil")]
     public class HistoryServerJeiController : Controller
     {
         // Creamos La Instancias Para Acceder a Los Metodos
@@ -30,7 +30,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.HistoryServerJei___Controller
 
         #region METODO PARA MOSTRAR INDEX
         // Accion Para Mostrar La Vista Index
-        [Authorize(Roles = "Desarrollador")]
+        [Authorize(Roles = "Desarrollador, Directivo Juvenil")]
         public async Task<IActionResult> Index(HistoryServerJei historyServerJei = null!)
         {
             if (historyServerJei == null)
@@ -47,7 +47,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.HistoryServerJei___Controller
         #endregion
 
         // Metod que extrae por Id y devolver a la vista en foramto Json
-        [Authorize(Roles = "Desarrollador")]
+        [Authorize(Roles = "Desarrollador, Directivo Juvenil")]
         [HttpGet]
         public async Task<IActionResult> GetJuventudDetails(int id)
         {
@@ -74,7 +74,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.HistoryServerJei___Controller
 
         #region METODO PARA MOSTRAR DETALLES
         // Acción Que Muestra El Detalle De Un Registro
-        [Authorize(Roles = "Desarrollador")]
+        [Authorize(Roles = "Desarrollador, Directivo Juvenil")]
         public async Task<IActionResult> Details(int id)
         {
             try

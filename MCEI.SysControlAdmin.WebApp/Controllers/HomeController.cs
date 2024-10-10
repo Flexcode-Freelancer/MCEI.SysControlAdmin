@@ -6,10 +6,10 @@ using System.Diagnostics;
 
 namespace MCEI.SysControlAdmin.WebApp.Controllers
 {
-    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme, Roles = "Desarrollador, Administrador, Digitador")]
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme, Roles = "Desarrollador, Administrador, Digitador, Directivo Juvenil")]
     public class HomeController : Controller
     {
-        [Authorize(Roles = "Desarrollador, Administrador, Digitador")]
+        [Authorize(Roles = "Desarrollador, Administrador, Digitador, Directivo Juvenil")]
         public IActionResult Index()
         {
             return View();
