@@ -19,7 +19,7 @@ using Rotativa.AspNetCore;
 
 namespace MCEI.SysControlAdmin.WebApp.Controllers.Server___Controller
 {
-    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme, Roles = "Desarrollador, Administrador")]
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme, Roles = "Desarrollador, Administrador, Digitador")]
     public class ServerController : Controller
     {
         // Creamos las instancias para acceder a los metodos
@@ -30,7 +30,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Server___Controller
 
         #region METODO PARA MOSTRAR INDEX
         // Accion Para Mostrar La Vista Index
-        [Authorize(Roles = "Desarrollador, Administrador")]
+        [Authorize(Roles = "Desarrollador, Administrador, Digitador")]
         public async Task<IActionResult> Index(Server server = null!)
         {
             if (server == null)
@@ -47,7 +47,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Server___Controller
         #endregion
 
         // Metod que extrae por Id y devolver a la vista en foramto Json
-        [Authorize(Roles = "Desarrollador, Administrador")]
+        [Authorize(Roles = "Desarrollador, Administrador, Digitador")]
         [HttpGet]
         public async Task<IActionResult> GetMembershipDetails(int id)
         {
@@ -75,7 +75,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Server___Controller
 
         #region METODO PARA CREAR
         // Accion Para Mostrar La Vista De Crear
-        [Authorize(Roles = "Desarrollador, Administrador")]
+        [Authorize(Roles = "Desarrollador, Administrador, Digitador")]
         public async Task<IActionResult> Create()
         {
             ViewBag.Membership = await membershipBL.GetAllAsync();
@@ -84,7 +84,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Server___Controller
             return View();
         }
 
-        [Authorize(Roles = "Desarrollador, Administrador")]
+        [Authorize(Roles = "Desarrollador, Administrador, Digitador")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Server server)
@@ -125,7 +125,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Server___Controller
 
         #region METODO PARA MODIFICAR
         // Acción que muestra la vista de modificar
-        [Authorize(Roles = "Desarrollador, Administrador")]
+        [Authorize(Roles = "Desarrollador, Administrador, Digitador")]
         public async Task<IActionResult> Edit(int id)
         {
             try
@@ -147,7 +147,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Server___Controller
         }
 
         // Acción que recibe los datos del formulario para ser enviados a la base de datos
-        [Authorize(Roles = "Desarrollador, Administrador")]
+        [Authorize(Roles = "Desarrollador, Administrador, Digitador")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Server server)
@@ -189,7 +189,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Server___Controller
 
         #region METODO PARA MOSTRAR DETALLES
         // Acción Que Muestra El Detalle De Un Registro
-        [Authorize(Roles = "Desarrollador, Administrador")]
+        [Authorize(Roles = "Desarrollador, Administrador, Digitador")]
         public async Task<IActionResult> Details(int id)
         {
             try
@@ -222,7 +222,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Server___Controller
 
         #region METODO PARA ELIMINAR
         // Accion Que Muestra La Vista De Eliminar
-        [Authorize(Roles = "Desarrollador, Administrador")]
+        [Authorize(Roles = "Desarrollador, Administrador, Digitador")]
         public async Task<IActionResult> Delete(int id)
         {
             try
@@ -251,7 +251,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Server___Controller
         }
 
         // Accion Que Recibe Los Datos Del Formulario Para Ser Enviados a La BD
-        [Authorize(Roles = "Desarrollador, Administrador")]
+        [Authorize(Roles = "Desarrollador, Administrador, Digitador")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id, Server server)
@@ -279,7 +279,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Server___Controller
 
         #region METODO PARA REPORTE
         // Metodo Para Generar Ficha o Reporte En PDF
-        [Authorize(Roles = "Desarrollador, Administrador")]
+        [Authorize(Roles = "Desarrollador, Administrador, Digitador")]
         public async Task<ActionResult> GeneratePDFfile(int id)
         {
             var generatePDF = await serverBL.GetByIdAsync(new Server { Id = id });

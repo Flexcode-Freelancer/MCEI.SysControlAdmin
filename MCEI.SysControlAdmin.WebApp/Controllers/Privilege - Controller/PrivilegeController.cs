@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MCEI.SysControlAdmin.WebApp.Controllers.Privilege___Controller
 {
-    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme, Roles = "Desarrollador, Administrador")]
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme, Roles = "Desarrollador, Administrador, Digitador")]
     public class PrivilegeController : Controller
     {
         // Creamos Una Instancia Para Acceder a Los Metodos
@@ -19,7 +19,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Privilege___Controller
 
         #region METODO PARA MOSTRAR INDEX
         // Accion Para Mostrar La Vista Index
-        [Authorize(Roles = "Desarrollador, Administrador")]
+        [Authorize(Roles = "Desarrollador, Administrador, Digitador")]
         public async Task<IActionResult> Index(Privilege privilege = null!)
         {
             if (privilege == null)
@@ -32,7 +32,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Privilege___Controller
 
         #region METODO PARA CREAR
         // Accion Para Mostrar La Vista De Crear
-        [Authorize(Roles = "Desarrollador, Administrador")]
+        [Authorize(Roles = "Desarrollador, Administrador, Digitador")]
         public ActionResult Create()
         {
             ViewBag.Error = "";
@@ -40,7 +40,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Privilege___Controller
         }
 
         // Accion Que Recibe Los Datos Del Formulario Para Ser Enviados a La BD
-        [Authorize(Roles = "Desarrollador, Administrador")]
+        [Authorize(Roles = "Desarrollador, Administrador, Digitador")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Privilege privilege)
@@ -61,7 +61,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Privilege___Controller
 
         #region METODO PARA MODIFICAR
         // Accion Que Muestra La Vista De Modificar
-        [Authorize(Roles = "Desarrollador, Administrador")]
+        [Authorize(Roles = "Desarrollador, Administrador, Digitador")]
         public async Task<IActionResult> Edit(int id)
         {
             var privilege = await privilegeBL.GetByIdAsync(new Privilege { Id = id });
@@ -70,7 +70,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Privilege___Controller
         }
 
         // Accion Que Recibe Los Datos Del Formulario Para Ser Enviados a La BD
-        [Authorize(Roles = "Desarrollador, Administrador")]
+        [Authorize(Roles = "Desarrollador, Administrador, Digitador")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Privilege privilege)
@@ -91,7 +91,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Privilege___Controller
 
         #region METODO PARA ELIMINAR
         // Accion Que Muestra La Vista De Eliminar
-        [Authorize(Roles = "Desarrollador, Administrador")]
+        [Authorize(Roles = "Desarrollador, Administrador Digitador")]
         public async Task<IActionResult> Delete(int id)
         {
             var privilege = await privilegeBL.GetByIdAsync(new Privilege { Id = id });
@@ -100,7 +100,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Privilege___Controller
         }
 
         // Accion Que Recibe Los Datos Del Formulario Para Ser Enviados a La BD
-        [Authorize(Roles = "Desarrollador, Administrador")]
+        [Authorize(Roles = "Desarrollador, Administrador, Digitador")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id, Privilege privilege)
@@ -121,7 +121,7 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.Privilege___Controller
 
         #region METODO PARA MOSTRAR DETALLES
         // Accion Que Muestra El Detalle De Un Registro
-        [Authorize(Roles = "Desarrollador, Administrador")]
+        [Authorize(Roles = "Desarrollador, Administrador, Digitador")]
         public async Task<IActionResult> Details(int id)
         {
             var privilege = await privilegeBL.GetByIdAsync(new Privilege { Id = id }); //Convertimos para mostrar muy bien
