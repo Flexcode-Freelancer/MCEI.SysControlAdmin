@@ -154,6 +154,17 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.User___Controller
         }
         #endregion
 
+        #region METODO PARA DETALLES
+        // Accion Que Muestra El Formulario
+        [Authorize(Roles = "Desarrollador, Administrador")]
+        public async Task<IActionResult> Information()
+        {
+            var users = await userBL.SearchIncludeRoleAsync(new User { Email = User.Identity!.Name!, Top_Aux = 1 });
+            var actualUser = users.FirstOrDefault();
+            return View(actualUser);
+        }
+        #endregion
+
         #region METODO DE INICIO DE SESION Y CERRAR SESION (LOGIN, LOGOUT)
         // Accion Que Muestra El Formulario
         [AllowAnonymous]

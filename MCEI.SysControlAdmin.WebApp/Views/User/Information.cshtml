@@ -1,0 +1,18 @@
+﻿@model MCEI.SysControlAdmin.EN.User___EN.User
+
+@{
+    ViewData["Title"] = "Información del Usuario";
+}
+
+@section Style{
+    <link href="/css/User/DesignInformation.css" rel="stylesheet" />
+}
+
+<div class="user-container">
+    <div class="user-info">
+        <img src="/assets/img/user/profile-user.png" alt="Foto de Usuario" class="user-photo">
+        <h2>@Model.Name @Model.LastName</h2>
+        <p>@Model.Email</p>
+        <p>@Model.Role!.Name</p>
+    </div>
+</div>
