@@ -154,9 +154,9 @@ namespace MCEI.SysControlAdmin.WebApp.Controllers.User___Controller
         }
         #endregion
 
-        #region METODO PARA DETALLES
+        #region METODO PARA INFORMACION
         // Accion Que Muestra El Formulario
-        [Authorize(Roles = "Desarrollador, Administrador")]
+        [Authorize(Roles = "Desarrollador, Administrador, Digitador, Directivo Juvenil")]
         public async Task<IActionResult> Information()
         {
             var users = await userBL.SearchIncludeRoleAsync(new User { Email = User.Identity!.Name!, Top_Aux = 1 });
