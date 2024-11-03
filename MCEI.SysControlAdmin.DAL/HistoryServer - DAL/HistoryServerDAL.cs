@@ -56,6 +56,17 @@ namespace MCEI.SysControlAdmin.DAL.HistoryServer___DAL
         }
         #endregion
 
+        public static async Task<List<HistoryServer>> GetByDUIAsync(string dui)
+        {
+            using (var dbContext = new ContextDB())
+            {
+                return await dbContext.HistoryServer
+                                      .Include(h => h.Membership).Include(h => h.Privilege) // Cargar propiedad de navegación
+                                      .Where(c => c.Membership!.Dui == dui)
+                                      .ToListAsync();
+            }
+        }
+
         #region METODO PARA BUSCAR REGISTROS MEDIANTE EL USO DE FILTROS
         // Metodo Para Buscar Por Filtros
         // IQueryable es una interfaz que toma un coleccion a la cual se le pueden implementar multiples consultas (Filtros)
