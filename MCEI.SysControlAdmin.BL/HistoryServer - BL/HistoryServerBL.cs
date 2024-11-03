@@ -38,6 +38,14 @@ namespace MCEI.SysControlAdmin.BL.HistoryServer___BL
         }
         #endregion
 
+        #region METODO PARA MOSTRAR POR DUI
+        // Metodo Para Mostrar Todos Los Registros De Un Servidor En Base A Su DUI
+        public async Task<List<HistoryServer>> GetByDUIAsync(string dui)
+        {
+            return await HistoryServerDAL.GetByDUIAsync(dui);
+        }
+        #endregion
+
         #region METODO PARA BUSCAR
         // Metodo Para Buscar Registros Existentes
         public async Task<List<HistoryServer>> SearchAsync(HistoryServer historyServer)
