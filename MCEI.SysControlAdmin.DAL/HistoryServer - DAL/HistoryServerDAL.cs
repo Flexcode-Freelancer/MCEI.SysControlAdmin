@@ -56,6 +56,7 @@ namespace MCEI.SysControlAdmin.DAL.HistoryServer___DAL
         }
         #endregion
 
+        #region METODO PARA OBTENER UNA LISTA POR SU DUI
         public static async Task<List<HistoryServer>> GetByDUIAsync(string dui)
         {
             using (var dbContext = new ContextDB())
@@ -66,6 +67,7 @@ namespace MCEI.SysControlAdmin.DAL.HistoryServer___DAL
                                       .ToListAsync();
             }
         }
+        #endregion
 
         #region METODO PARA BUSCAR REGISTROS MEDIANTE EL USO DE FILTROS
         // Metodo Para Buscar Por Filtros
