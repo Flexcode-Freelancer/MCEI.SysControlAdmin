@@ -54,6 +54,14 @@ namespace MCEI.SysControlAdmin.BL.Server___BL
         }
         #endregion
 
+        #region METODO PARA MOSTRAR SERVIDORES ACTIVOS AGRUPADOS POR PRIVILEGIO
+        // Método para obtener servidores activos agrupados por privilegio
+        public async Task<Dictionary<int, List<Server>>> GetActiveServersGroupedByPrivilegeAsync()
+        {
+            return await ServerDAL.GetActiveServersGroupedByPrivilegeAsync();
+        }
+        #endregion
+
         #region METODO PARA BUSCAR
         // Metodo Para Buscar Registros Existentes
         public async Task<List<Server>> SearchAsync(Server server)
