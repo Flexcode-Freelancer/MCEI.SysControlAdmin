@@ -128,6 +128,25 @@ namespace MCEI.SysControlAdmin.DAL.Server___DAL
         //}
         #endregion
 
+        public static async Task<Dictionary<int, List<Server>>> GetActiveServersGroupedByPrivilegeAsync()
+        {
+            using (var dbContext = new ContextDB())
+            {
+                var activeServers = await dbContext.Server
+                    .Where(s => s.Status == 1) // Filtrar por status = 1
+                    .Include(s => s.Membership) // Incluir propiedades relacionadas si es necesario
+                    .Include(s => s.Privilege)
+                    .ToListAsync();
+
+                // Agrupar por PrivilegeId
+                var groupedServers = activeServers
+                    .GroupBy(s => s.IdPrivilege) // Agrupar por IdPrivilege
+                    .ToDictionary(g => g.Key, g => g.ToList()); // Convertir a un diccionario
+
+                return groupedServers;
+            }
+        }
+
         #region METODO PARA BUSCAR REGISTROS MEDIANTE EL USO DE FILTROS
         // Metodo Para Buscar Por Filtros
         // IQueryable es una interfaz que toma un coleccion a la cual se le pueden implementar multiples consultas (Filtros)
