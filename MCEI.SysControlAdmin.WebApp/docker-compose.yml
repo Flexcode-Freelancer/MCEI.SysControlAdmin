@@ -3,7 +3,7 @@
 services:
   MCEI.SysControlAdmin:
     build:
-      context: .
+      context: ./MCEI.SysControlAdmin.WebApp 
       dockerfile: Dockerfile
     ports:
       - "80:80"   # Exponer el puerto 80
@@ -11,4 +11,4 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Development # Ajusta según tus necesidades
     volumes:
-      - .:/app # Montar el directorio actual en /app dentro del contenedor
+      - ./MCEI.SysControlAdmin.WebApp:/app 
