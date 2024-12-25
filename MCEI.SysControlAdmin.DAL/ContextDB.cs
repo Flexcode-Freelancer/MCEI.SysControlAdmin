@@ -42,7 +42,7 @@ namespace MCEI.SysControlAdmin.DAL
         // Metodo de Conexion a la Base de Datos
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=localhost;Initial Catalog=MCEISysControlAdminDB;Integrated Security=True;Trust Server Certificate=True"); // String de Conexion
+            optionsBuilder.UseSqlServer(@"Data Source=p1434.use1.mysecurecloudhost.com;Initial Catalog=testmcei;User ID=eliqsv_mceitest;Password=mcei.2024;Trust Server Certificate=True"); // String de Conexion
         }
     }
 }

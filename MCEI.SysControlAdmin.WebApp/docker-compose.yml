@@ -1,0 +1,14 @@
+﻿version: '3.8'
+
+services:
+  MCEI.SysControlAdmin:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"   # Exponer el puerto 80
+      - "443:443" # Exponer el puerto 443
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development # Ajusta según tus necesidades
+    volumes:
+      - .:/app # Montar el directorio actual en /app dentro del contenedor
